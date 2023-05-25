@@ -16,12 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from main.views import DataViewSet
+from main.views import DataViewSet, get_random_image
 
 router = routers.SimpleRouter()
+# I call this api on react by typing data into by axios fetch.
 router.register('data', DataViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
     path('admin/', admin.site.urls),
+    path('api/randimg/', get_random_image, name='randimg')
 ]
