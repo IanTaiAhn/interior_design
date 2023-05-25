@@ -1,0 +1,30 @@
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+
+const FrontendApi = () => {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    // Make a GET request to your Django API endpoint
+    axios
+      .get("http://127.0.0.1:8000/data/")
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1>Hello</h1>
+      {/* Display the fetched data */}
+      {data.map((item) => (
+        <p key={item.id}>{item.name}</p>
+      ))}
+    </div>
+  );
+};
+
+export default FrontendApi;
