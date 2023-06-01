@@ -27,3 +27,24 @@ def get_random_image(request):
         return JsonResponse(data)
     else:
         return JsonResponse({'error': 'Failed to fetch image'}, status=500)
+
+
+def upload_image(request):
+    if request.method == 'POST' and request.FILES.get('image'):
+        uploaded_image = request.FILES['image']
+        # You can perform additional validations or checks on the uploaded image here
+
+        # Specify the desired storage location for the uploaded image
+        # For example, 'media/images/'
+        save_location = 'media/images/' + uploaded_image.name
+
+        # Save the uploaded image to the specified location
+        with open(save_location, 'wb') as f:
+            for chunk in uploaded_image.chunks():
+                f.write(chunk)
+
+        # Optionally, you can perform further processing or manipulation of the image using libraries like Pillow or OpenCV
+
+        return JsonResponse({'message': 'Image uploaded successfully'})
+    else:
+        return JsonResponse({'error': 'No image file provided'}, status=400)
