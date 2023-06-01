@@ -4,6 +4,7 @@ from .serializers import DataSerializer
 from .models import TestData
 import requests
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 
 
 class DataViewSet(viewsets.ModelViewSet):
@@ -29,6 +30,8 @@ def get_random_image(request):
         return JsonResponse({'error': 'Failed to fetch image'}, status=500)
 
 
+# @csrf_protect
+@csrf_exempt
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
         uploaded_image = request.FILES['image']
