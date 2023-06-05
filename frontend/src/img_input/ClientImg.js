@@ -6,6 +6,7 @@ function ClientImg() {
   const [selectedImage, setSelectedImage] = useState(null);
   //   const csrfToken = Cookies.get("csrftoken");
   //   axios.defaults.headers.common["X-CSRFToken"] = csrfToken;
+  // Perhaps I'll do fetch instead....
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
