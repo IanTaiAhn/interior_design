@@ -55,7 +55,23 @@ def upload_image(request):
             for chunk in uploaded_image.chunks():
                 f.write(chunk)
 
-        # Optionally, you can perform further processing or manipulation of the image using libraries like Pillow or OpenCV
+        # this returns a processed image
+        process_image(save_location)
+        # post back to the frontend server now
+        # idk if this code works down here, but lets try to post back to the react server now.
+        data = {
+            'key1': 'value1',
+            'key2': 'value2',
+            # Add more data as needed
+        }
+        try:
+            response = requests.post(
+                'http://frontend-server.com/api/endpoint', json=data)
+
+        except:
+            print("Didn't work")
+
+        # after post delete the image in the save_location.
 
         return JsonResponse({'message': 'Image uploaded successfully'})
     else:

@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 
 function ClientImg() {
   const [selectedImage, setSelectedImage] = useState(null);
+  const [processedImage, setProcessedImage] = useState(null);
   const csrfToken = Cookies.get("csrftoken");
 
   const handleImageUpload = async (event) => {
@@ -21,14 +22,34 @@ function ClientImg() {
         body: formData,
       });
 
-      console.log("Image uploaded successfully!");
-      console.log(Cookies.get("csrftoken"));
+      // fetch("http://127.0.0.1:8000/download/")
+      //   .then((response) => {
+      //     if (response.ok) {
+      //       // If the response is successful, return the image blob
+      //       return response.blob();
+      //     } else {
+      //       // If there's an error, handle it accordingly
+      //       throw new Error("Error retrieving the image");
+      //     }
+      //   })
+      //   .then((imageBlob) => {
+      //     // Create an object URL for the image blob
+      //     const imageUrl = URL.createObjectURL(imageBlob);
+
+      //     // Use the imageUrl as the source for displaying the image
+      //     const imgElement = document.getElementById("myImage");
+      //     imgElement.src = imageUrl;
+      //   })
+      //   .catch((error) => {
+      //     console.error("Error:", error.message);
+      //   });
+
+      // Instead of making it all complicated lets just set a variable or idk...
     } catch (error) {
-      console.log(Cookies.get("csrftoken"));
       console.error("Error uploading image:", error);
     }
   };
-
+  // Add an animation that plays while the image is being processed.
   return (
     <div>
       <h2>Image Uploader</h2>
