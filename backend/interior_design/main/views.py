@@ -1,16 +1,26 @@
+import requests
 from django.shortcuts import render
+from django.http import JsonResponse
+from django.http import FileResponse
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from rest_framework import viewsets
+from PIL import Image, ImageFilter
 from .serializers import DataSerializer
 from .models import TestData
-import requests
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+
+# For testing
 
 
 class DataViewSet(viewsets.ModelViewSet):
     queryset = TestData.objects.all()
     serializer_class = DataSerializer
-# Create your views here.
+
+
+def process_image(image_path):
+    image = Image.open(image_path)
+    # call api here and do some stuff,
+    # for now we will blur it out.
+    return image.filter(ImageFilter.BLUR)
 
 
 def get_random_image(request):
@@ -29,16 +39,15 @@ def get_random_image(request):
     else:
         return JsonResponse({'error': 'Failed to fetch image'}, status=500)
 
+# TODO make it so that the csrf tags work properly
+
 
 # @csrf_protect
 @csrf_exempt
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
         uploaded_image = request.FILES['image']
-        # You can perform additional validations or checks on the uploaded image here
 
-        # Specify the desired storage location for the uploaded image
-        # For example, 'media/images/'
         save_location = 'media/images/' + uploaded_image.name
 
         # Save the uploaded image to the specified location
@@ -51,3 +60,17 @@ def upload_image(request):
         return JsonResponse({'message': 'Image uploaded successfully'})
     else:
         return JsonResponse({'error': 'No image file provided'}, status=400)
+
+
+# def get_processed_image(request, image_id):
+#     # The request needs to have the name of the image...
+#     # I imagine we have a load time where the image gets processed.
+#     # once it is done we give a button for the user to click which sends the photo back.
+#     # Once it has sent back we will delete it from our mdeia folder.
+
+#     # Open the image file and create a FileResponse
+#     img_file_path = 'media/images/'
+#     image_file = open(image_path, 'rb')
+#     response = FileResponse(image_file)
+
+    return response

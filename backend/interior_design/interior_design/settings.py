@@ -129,6 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # Add your frontend's domain here
+    'http://localhost:8000'
+
 ]
 
 CORS_ALLOWED_METHODS = [
@@ -147,6 +149,10 @@ CORS_ALLOWED_HEADERS = [
 
 # CORS_ALLOW_CREDENTIALS = True
 # CORS_ORIGIN_ALLOW_ALL = False
+# CSRF_COOKIE_HTTPONLY = True
+# CSRF_COOKIE_SECURE = True  # If you're using HTTPS
+# SESSION_COOKIE_SAMESITE = 'None'
+
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
