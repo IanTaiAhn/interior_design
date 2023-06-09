@@ -6,7 +6,7 @@ function ImageComponent() {
   useEffect(() => {
     const getImage = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:8000/download/");
+        const response = await fetch("http://127.0.0.1:8000/upload/");
         if (response.ok) {
           const imageBlob = await response.blob();
           setImageURL(URL.createObjectURL(imageBlob));
@@ -21,7 +21,12 @@ function ImageComponent() {
     getImage();
   }, []);
 
-  return <div>{imageURL && <img src={imageURL} alt="Server Image" />}</div>;
+  return (
+    <div>
+      <h2>Image here</h2>
+      {imageURL && <img src={imageURL} alt="Server Image" />}
+    </div>
+  );
 }
 
 export default ImageComponent;

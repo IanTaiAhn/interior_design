@@ -1,9 +1,17 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ClientImg from "../img_input/ClientImg";
+import ClientImgOut from "../img_output/ClientImgOut";
 
 const FrontendApi = () => {
   const [data, setData] = useState([]);
+  const [isPreviousRequestFinished, setIsPreviousRequestFinished] =
+    useState(false);
+
+  // Callback function to be called when the previous request finishes
+  const handlePreviousRequestFinish = () => {
+    setIsPreviousRequestFinished(true);
+  };
 
   useEffect(() => {
     // Make a GET request to your Django API endpoint
@@ -16,7 +24,7 @@ const FrontendApi = () => {
         console.error(error);
       });
   }, []);
-
+  console.log(isPreviousRequestFinished);
   return (
     <div>
       <h1>Displays test data from backend if Django server is on</h1>
@@ -24,9 +32,9 @@ const FrontendApi = () => {
       {data.map((item) => (
         <p key={item.id}>{item.name}</p>
       ))}
-      <ClientImg />
+      <ClientImg onFinished={handlePreviousRequestFinish} />
+      {isPreviousRequestFinished && <ClientImgOut />}
     </div>
   );
 };
-
 export default FrontendApi;

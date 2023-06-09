@@ -45,30 +45,63 @@ def get_random_image(request):
 # @csrf_protect
 @csrf_exempt
 def upload_image(request):
+    image_file_path = None
     if request.method == 'POST' and request.FILES.get('image'):
         uploaded_image = request.FILES['image']
         save_location = 'media/images/' + uploaded_image.name
         request.session['image_path'] = save_location
-
+        # session_dict = request.session.items()
+        # for key, value in session_dict:
+        #     print("hello 1")
+        #     print(f"Key: {key}, Value: {value}")
         with open(save_location, 'wb') as f:
             for chunk in uploaded_image.chunks():
                 f.write(chunk)
-
         process_image(save_location, 4).save(save_location)
+
+        # Begin the post back.
+        frontend_url = 'http://localhost:3000/'
+        image_data = open(save_location, 'rb').read()
+        response = requests.post(frontend_url, data=image_data)
+
+        # Handle the response from the frontend server
+        if response.status_code == 200:
+            return JsonResponse({'message': 'POST request to frontend server successful'})
+        else:
+            return JsonResponse({'error': 'POST request to frontend server failed'})
+
         return JsonResponse({'message': 'Image uploaded successfully'})
+    # if request.method == 'GET':
+    #     print("get started")
+    #     session_dict = request.session.items()
+    #     for key, value in session_dict:
+    #         print("hello 2")
+    #         print(f"Key: {key}, Value: {value}")
+    #     image_path = request.session.get('image_path')
+    #     print(image_path)
+    #     with open(image_path, 'rb') as image_file:
+    #         image_data = image_file.read()
+    #     response = HttpResponse(content_type='image/jpeg')
+    #     response.write(image_data)
+    #     return response
     else:
-        return JsonResponse({'error': 'No image file provided'}, status=400)
+        return JsonResponse({'error': 'upload_image failed'}, status=400)
 
 
-@csrf_exempt
-def download_image(request):
-    if request.method == 'GET':
-        image_path = request.session.get('image_path')
-        with open(image_path, 'rb') as image_file:
-            image_data = image_file.read()
-        response = HttpResponse(content_type='image/jpeg')
-        response.write(image_data)
-        return response
+# @csrf_exempt
+# def download_image(request):
+#     if request.method == 'GET':
+#         session_dict = request.session.items()
+#         for key, value in session_dict:
+#             print("hello 2")
+#             print(f"Key: {key}, Value: {value}")
+#         image_path = request.session.get('image_path')
+#         print(image_path)
+#         with open(image_path, 'rb') as image_file:
+#             image_data = image_file.read()
+#         response = HttpResponse(content_type='image/jpeg')
+#         response.write(image_data)
+#         return response
 
     # if request.method == 'GET':
     #     # process_image(save_location)
