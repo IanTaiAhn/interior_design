@@ -1,6 +1,6 @@
 import requests
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import HttpResponse, JsonResponse
 from django.http import FileResponse
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from rest_framework import viewsets
@@ -16,11 +16,11 @@ class DataViewSet(viewsets.ModelViewSet):
     serializer_class = DataSerializer
 
 
-def process_image(image_path):
+def process_image(image_path, iterations):
     image = Image.open(image_path)
-    # call api here and do some stuff,
-    # for now we will blur it out.
-    return image.filter(ImageFilter.BLUR)
+    for i in range(iterations):
+        image = image.filter(ImageFilter.BLUR)
+    return image
 
 
 def get_random_image(request):
@@ -47,35 +47,46 @@ def get_random_image(request):
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
         uploaded_image = request.FILES['image']
-
         save_location = 'media/images/' + uploaded_image.name
+        request.session['image_path'] = save_location
 
-        # Save the uploaded image to the specified location
         with open(save_location, 'wb') as f:
             for chunk in uploaded_image.chunks():
                 f.write(chunk)
 
-        # this returns a processed image
-        process_image(save_location)
-        # post back to the frontend server now
-        # idk if this code works down here, but lets try to post back to the react server now.
-        data = {
-            'key1': 'value1',
-            'key2': 'value2',
-            # Add more data as needed
-        }
-        try:
-            response = requests.post(
-                'http://frontend-server.com/api/endpoint', json=data)
-
-        except:
-            print("Didn't work")
-
-        # after post delete the image in the save_location.
-
+        process_image(save_location, 4).save(save_location)
         return JsonResponse({'message': 'Image uploaded successfully'})
     else:
         return JsonResponse({'error': 'No image file provided'}, status=400)
+
+
+@csrf_exempt
+def download_image(request):
+    if request.method == 'GET':
+        image_path = request.session.get('image_path')
+        with open(image_path, 'rb') as image_file:
+            image_data = image_file.read()
+        response = HttpResponse(content_type='image/jpeg')
+        response.write(image_data)
+        return response
+
+    # if request.method == 'GET':
+    #     # process_image(save_location)
+    #     data = {
+    #         'test': 'Hello from Django'
+    #         # Add more data as needed
+    #     }
+    #     try:
+    #         response = requests.post(
+    #             'http://localhost:3000', json=data)
+    #         print("it tried?")
+    #     except:
+    #         return JsonResponse({'message': 'Failed to send data'}, status=500)
+    # after post delete the image in the save_location.
+
+    #     return JsonResponse({'message': 'Image uploaded successfully'})
+    # else:
+    #     return JsonResponse({'error': 'No image file provided'}, status=400)
 
 
 # def get_processed_image(request, image_id):
@@ -89,4 +100,4 @@ def upload_image(request):
 #     image_file = open(image_path, 'rb')
 #     response = FileResponse(image_file)
 
-    return response
+    # return response

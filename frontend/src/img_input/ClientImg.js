@@ -1,18 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 
 function ClientImg() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [processedImage, setProcessedImage] = useState(null);
   const csrfToken = Cookies.get("csrftoken");
+  useEffect(() => {
+    // Call the function when the component mounts
+    if (selectedImage) {
+      fetchImageFromDjango();
+    }
+  }, [selectedImage]);
 
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
-
     const formData = new FormData();
     formData.append("image", file);
-
     try {
       await fetch("http://127.0.0.1:8000/upload/", {
         method: "POST",
@@ -21,32 +25,24 @@ function ClientImg() {
         },
         body: formData,
       });
-
-      // fetch("http://127.0.0.1:8000/download/")
-      //   .then((response) => {
-      //     if (response.ok) {
-      //       // If the response is successful, return the image blob
-      //       return response.blob();
-      //     } else {
-      //       // If there's an error, handle it accordingly
-      //       throw new Error("Error retrieving the image");
-      //     }
-      //   })
-      //   .then((imageBlob) => {
-      //     // Create an object URL for the image blob
-      //     const imageUrl = URL.createObjectURL(imageBlob);
-
-      //     // Use the imageUrl as the source for displaying the image
-      //     const imgElement = document.getElementById("myImage");
-      //     imgElement.src = imageUrl;
-      //   })
-      //   .catch((error) => {
-      //     console.error("Error:", error.message);
-      //   });
-
-      // Instead of making it all complicated lets just set a variable or idk...
     } catch (error) {
       console.error("Error uploading image:", error);
+    }
+  };
+
+  const fetchImageFromDjango = async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/download/");
+      if (response.ok) {
+        const blob = await response.blob();
+        const url = URL.createObjectURL(blob);
+        setProcessedImage(url);
+      } else {
+        console.error("Error:", response.status);
+        console.log("Response type:", response.type);
+      }
+    } catch (error) {
+      console.error("Error:", error);
     }
   };
   // Add an animation that plays while the image is being processed.
@@ -60,57 +56,13 @@ function ClientImg() {
           <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
         </div>
       )}
+      {processedImage && (
+        <div>
+          <h3>Processed Image:</h3>
+          <img src={URL.createObjectURL(processedImage)} alt="Processed" />
+        </div>
+      )}
     </div>
   );
 }
-
 export default ClientImg;
-
-// This is the same code but uses axios instead.
-// import React, { useState } from "react";
-// import axios from "axios";
-// import Cookies from "js-cookie";
-
-// function ClientImg() {
-//   const [selectedImage, setSelectedImage] = useState(null);
-//   //   const csrfToken = Cookies.get("csrftoken");
-//   //   axios.defaults.headers.common["X-CSRFToken"] = csrfToken;
-//   // Perhaps I'll do fetch instead....
-//   // Definitlye try fetch instead.
-
-//   const handleImageUpload = async (event) => {
-//     const file = event.target.files[0];
-//     setSelectedImage(file);
-
-//     const formData = new FormData();
-//     formData.append("image", file);
-
-//     try {
-//       await axios.post("http://127.0.0.1:8000/upload/", formData, {
-//         headers: {
-//           "Content-Type": "multipart/form-data",
-//           "X-CSRFToken": Cookies.get("csrftoken"),
-//         },
-//       });
-//       console.log("Image uploaded successfully!");
-//     } catch (error) {
-//       console.log(Cookies.get("csrftoken"));
-//       console.error("Error uploading image:", error);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <h2>Image Uploader</h2>
-//       <input type="file" accept="image/*" onChange={handleImageUpload} />
-//       {selectedImage && (
-//         <div>
-//           <h3>Selected Image:</h3>
-//           <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
-//         </div>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default ClientImg;
