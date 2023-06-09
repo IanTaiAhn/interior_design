@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ClientImg from "../img_input/ClientImg";
 import ClientImgOut from "../img_output/ClientImgOut";
+import ProcessClientImg from "../img_input/ProcessClientImg";
 
 const FrontendApi = () => {
   const [data, setData] = useState([]);
@@ -32,8 +33,9 @@ const FrontendApi = () => {
       {data.map((item) => (
         <p key={item.id}>{item.name}</p>
       ))}
+      {/* <ProcessClientImg /> */}
       <ClientImg onFinished={handlePreviousRequestFinish} />
-      {isPreviousRequestFinished && <ClientImgOut />}
+      {/* {isPreviousRequestFinished && <ClientImgOut />} */}
     </div>
   );
 };

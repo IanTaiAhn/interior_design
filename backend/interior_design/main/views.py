@@ -1,6 +1,6 @@
 import requests
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from django.http import FileResponse
 from django.views.decorators.csrf import csrf_protect, csrf_exempt
 from rest_framework import viewsets
@@ -45,92 +45,47 @@ def get_random_image(request):
 # @csrf_protect
 @csrf_exempt
 def upload_image(request):
-    image_file_path = None
     if request.method == 'POST' and request.FILES.get('image'):
         uploaded_image = request.FILES['image']
         save_location = 'media/images/' + uploaded_image.name
-        request.session['image_path'] = save_location
-        # session_dict = request.session.items()
-        # for key, value in session_dict:
-        #     print("hello 1")
-        #     print(f"Key: {key}, Value: {value}")
+
         with open(save_location, 'wb') as f:
             for chunk in uploaded_image.chunks():
                 f.write(chunk)
+
         process_image(save_location, 4).save(save_location)
 
-        # Begin the post back.
-        frontend_url = 'http://localhost:3000/'
-        image_data = open(save_location, 'rb').read()
-        response = requests.post(frontend_url, data=image_data)
-
-        # Handle the response from the frontend server
-        if response.status_code == 200:
-            return JsonResponse({'message': 'POST request to frontend server successful'})
-        else:
-            return JsonResponse({'error': 'POST request to frontend server failed'})
-
-        return JsonResponse({'message': 'Image uploaded successfully'})
-    # if request.method == 'GET':
-    #     print("get started")
-    #     session_dict = request.session.items()
-    #     for key, value in session_dict:
-    #         print("hello 2")
-    #         print(f"Key: {key}, Value: {value}")
-    #     image_path = request.session.get('image_path')
-    #     print(image_path)
-    #     with open(image_path, 'rb') as image_file:
-    #         image_data = image_file.read()
-    #     response = HttpResponse(content_type='image/jpeg')
-    #     response.write(image_data)
-    #     return response
+        # def internalCallback():
+        #     print("internal call back fired")
+        #     internal_request = HttpRequest()
+        #     internal_request.method = 'POST'
+        #     internal_request.path = '/postback/'
+        #     internal_request.POST = {'image_file_name': save_location}
+        #     response = upload_image_postback(internal_request)
+        #     return response
+        # # Handle the response from the frontend server
+        # internalCallback()
+        return JsonResponse({'image_url': process_image(save_location, 4).save(save_location)})
     else:
         return JsonResponse({'error': 'upload_image failed'}, status=400)
 
-
-# @csrf_exempt
-# def download_image(request):
-#     if request.method == 'GET':
-#         session_dict = request.session.items()
-#         for key, value in session_dict:
-#             print("hello 2")
-#             print(f"Key: {key}, Value: {value}")
-#         image_path = request.session.get('image_path')
-#         print(image_path)
-#         with open(image_path, 'rb') as image_file:
-#             image_data = image_file.read()
-#         response = HttpResponse(content_type='image/jpeg')
-#         response.write(image_data)
-#         return response
-
-    # if request.method == 'GET':
-    #     # process_image(save_location)
-    #     data = {
-    #         'test': 'Hello from Django'
-    #         # Add more data as needed
-    #     }
-    #     try:
-    #         response = requests.post(
-    #             'http://localhost:3000', json=data)
-    #         print("it tried?")
-    #     except:
-    #         return JsonResponse({'message': 'Failed to send data'}, status=500)
-    # after post delete the image in the save_location.
-
-    #     return JsonResponse({'message': 'Image uploaded successfully'})
-    # else:
-    #     return JsonResponse({'error': 'No image file provided'}, status=400)
+# so it works, but then we make another request from the frontend and the data has already expired...
+# so we need to figure out how to just post it or something.
 
 
-# def get_processed_image(request, image_id):
-#     # The request needs to have the name of the image...
-#     # I imagine we have a load time where the image gets processed.
-#     # once it is done we give a button for the user to click which sends the photo back.
-#     # Once it has sent back we will delete it from our mdeia folder.
-
-#     # Open the image file and create a FileResponse
-#     img_file_path = 'media/images/'
-#     image_file = open(image_path, 'rb')
-#     response = FileResponse(image_file)
-
-    # return response
+@csrf_exempt
+def upload_image_postback(request):
+    # Retrieve the image file name from the request parameters
+    image_file_name = request.POST.get('image_file_name')
+    print("fires outside")
+    print(image_file_name)
+    # Perform further processing with the image file name
+    # For example, you can use it to locate and manipulate the corresponding image file
+    try:
+        print("fires inside?")
+        print(image_file_name)
+        with open(image_file_name, 'rb') as f:
+            # Adjust content_type based on your image type
+            return FileResponse(f, content_type='image/jpeg')
+    except FileNotFoundError:
+        return HttpResponse("Image not found.", status=404)

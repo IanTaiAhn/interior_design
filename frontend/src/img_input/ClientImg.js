@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 function ClientImg({ onFinished }) {
   const [selectedImage, setSelectedImage] = useState(null);
-  const [processedImage, setProcessedImage] = useState(null);
+  const [processedImage, setProcessedImage] = useState("");
   const csrfToken = Cookies.get("csrftoken");
 
   const handleImageUpload = async (event) => {
@@ -11,14 +11,22 @@ function ClientImg({ onFinished }) {
     setSelectedImage(file);
     const formData = new FormData();
     formData.append("image", file);
+
     try {
-      await fetch("http://127.0.0.1:8000/upload/", {
+      const response = await fetch("http://127.0.0.1:8000/upload/", {
         method: "POST",
-        headers: {
-          "X-CSRFToken": csrfToken,
-        },
         body: formData,
       });
+      if (response.ok) {
+        const data = await response.json();
+        const imageUrl = data.image_url;
+        setProcessedImage(imageUrl);
+        // Use the image URL in your React component
+        console.log("Image URL:", imageUrl);
+        // Perform any additional actions with the image URL
+      } else {
+        console.error("Error:", response.status);
+      }
       onFinished();
     } catch (error) {
       console.error("Error uploading image:", error);
@@ -35,6 +43,7 @@ function ClientImg({ onFinished }) {
           <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
         </div>
       )}
+      {processedImage && <img src={processedImage} alt="Uploaded Image" />}{" "}
     </div>
   );
 }
