@@ -10,9 +10,9 @@ const FrontendApi = () => {
     useState(false);
 
   // Callback function to be called when the previous request finishes
-  const handlePreviousRequestFinish = () => {
-    setIsPreviousRequestFinished(true);
-  };
+  // const handlePreviousRequestFinish = () => {
+  //   setIsPreviousRequestFinished(true);
+  // };
 
   useEffect(() => {
     // Make a GET request to your Django API endpoint
@@ -25,7 +25,7 @@ const FrontendApi = () => {
         console.error(error);
       });
   }, []);
-  console.log(isPreviousRequestFinished);
+  // console.log(isPreviousRequestFinished);
   return (
     <div>
       <h1>Displays test data from backend if Django server is on</h1>
@@ -34,7 +34,9 @@ const FrontendApi = () => {
         <p key={item.id}>{item.name}</p>
       ))}
       {/* <ProcessClientImg /> */}
-      <ClientImg onFinished={handlePreviousRequestFinish} />
+      <ClientImg />
+      {/* <ClientImg onFinished={handlePreviousRequestFinish} /> */}
+
       {/* {isPreviousRequestFinished && <ClientImgOut />} */}
     </div>
   );

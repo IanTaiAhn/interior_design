@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
-from main.views import DataViewSet, get_random_image, upload_image, upload_image_postback
+from main.views import DataViewSet, get_random_image, upload_image
 from django.conf.urls.static import static
 from django.conf import settings
 
@@ -29,6 +29,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/randimg/', get_random_image, name='randimg'),
     path('upload/', upload_image, name='upload_image'),
-    path('postback/', upload_image_postback, name='upload_image_postback'),
-
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
