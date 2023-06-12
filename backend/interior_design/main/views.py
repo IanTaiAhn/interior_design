@@ -7,7 +7,7 @@ from rest_framework import viewsets
 from PIL import Image, ImageFilter
 from .serializers import DataSerializer
 from .models import TestData
-
+from django.views.decorators.csrf import ensure_csrf_cookie
 # For testing
 
 
@@ -40,9 +40,9 @@ def process_image(image_path, iterations):
     image.save(image_path)
     return image
 
+
+# @ensure_csrf_cookie
 # @csrf_protect
-
-
 @csrf_exempt
 def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
@@ -57,7 +57,6 @@ def upload_image(request):
 
         response = HttpResponse(content_type="image/jpeg")
         processed_image.save(response, "JPEG")
-        # delete the photo on the backend now.
         os.remove(save_location)
         return response
     else:

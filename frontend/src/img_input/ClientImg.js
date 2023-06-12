@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Cookies from "js-cookie";
 
 function ClientImg() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -7,6 +8,7 @@ function ClientImg() {
   const handleImageUpload = async (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
+    const csrfToken = Cookies.get("csrftoken");
 
     const formData = new FormData();
     formData.append("image", file);
@@ -15,8 +17,18 @@ function ClientImg() {
     try {
       const response = await fetch("http://localhost:8000/upload/", {
         method: "POST",
+        headers: {
+          "X-CSRFToken": csrfToken,
+        },
         body: formData,
       });
+      if (navigator.cookieEnabled) {
+        // Cookies are enabled
+        console.log("Cookies are enabled in the browser");
+      } else {
+        // Cookies are disabled
+        console.log("Cookies are disabled in the browser");
+      }
       if (response.ok) {
         const imageBlob = await response.blob();
         const imageUrl = URL.createObjectURL(imageBlob);
