@@ -8,8 +8,10 @@ from PIL import Image, ImageFilter
 from .serializers import DataSerializer
 from .models import TestData
 from django.views.decorators.csrf import ensure_csrf_cookie
-from ..interior_design.secret_settings import random_img_api_key
+# from .secret_settings import ran
 # For testing
+
+random_img_api_key = 'PO9vdDW0c5JsgnPJFaKQDGZ70fbEKbVV7XwyZMwya5I'
 
 
 class DataViewSet(viewsets.ModelViewSet):
