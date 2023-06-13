@@ -27,3 +27,4 @@ yarn-error.log*
 
 # frontend
 /frontend/node_modules
+/frontend/package-lock.json
