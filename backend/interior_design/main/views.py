@@ -8,6 +8,7 @@ from PIL import Image, ImageFilter
 from .serializers import DataSerializer
 from .models import TestData
 from django.views.decorators.csrf import ensure_csrf_cookie
+from ..interior_design.secret_settings import random_img_api_key
 # For testing
 
 
@@ -17,7 +18,7 @@ class DataViewSet(viewsets.ModelViewSet):
 
 
 def get_random_image(request):
-    api_key = 'PO9vdDW0c5JsgnPJFaKQDGZ70fbEKbVV7XwyZMwya5I'
+    api_key = random_img_api_key
     url = 'https://api.unsplash.com/photos/random'
     headers = {
         'Authorization': f'Client-ID {api_key}'
