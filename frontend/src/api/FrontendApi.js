@@ -6,16 +6,10 @@ import ProcessClientImg from "../img_input/ProcessClientImg";
 
 const FrontendApi = () => {
   const [data, setData] = useState([]);
-  const [isPreviousRequestFinished, setIsPreviousRequestFinished] =
-    useState(false);
-
-  // Callback function to be called when the previous request finishes
-  // const handlePreviousRequestFinish = () => {
-  //   setIsPreviousRequestFinished(true);
-  // };
+  useState(false);
 
   useEffect(() => {
-    // Make a GET request to your Django API endpoint
+    // tESTING CONNECTION
     axios
       .get("http://127.0.0.1:8000/data/")
       .then((response) => {
@@ -25,7 +19,6 @@ const FrontendApi = () => {
         console.error(error);
       });
   }, []);
-  // console.log(isPreviousRequestFinished);
   return (
     <div>
       <h1>Displays test data from backend if Django server is on</h1>
@@ -33,11 +26,7 @@ const FrontendApi = () => {
       {data.map((item) => (
         <p key={item.id}>{item.name}</p>
       ))}
-      {/* <ProcessClientImg /> */}
       <ClientImg />
-      {/* <ClientImg onFinished={handlePreviousRequestFinish} /> */}
-
-      {/* {isPreviousRequestFinished && <ClientImgOut />} */}
     </div>
   );
 };
