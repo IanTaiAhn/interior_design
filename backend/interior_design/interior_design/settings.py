@@ -29,6 +29,9 @@ DEBUG = False
 # turn on to true when published
 ALLOWED_HOSTS = []
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -154,8 +157,9 @@ CORS_ALLOWED_HEADERS = [
 ]
 
 # CSRF_COOKIE_HTTPONLY = False
-CSRF_COOKIE_SECURE = False  # set to true when pushing to production
-CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SECURE = True  # set to true when pushing to production
+SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SAMESITE = 'Lax'
 # CORS_ALLOW_CREDENTIALS = True
 # CORS_ORIGIN_ALLOW_ALL = False
 # CSRF_COOKIE_HTTPONLY = True
@@ -164,3 +168,7 @@ CSRF_COOKIE_SAMESITE = 'Lax'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+# For production
+SECURE_SSL_REDIRECT = True
