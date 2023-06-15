@@ -137,11 +137,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
+    'https://iantaiahn.github.io',
 ]
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:8000',
+    'https://iantaiahn.github.io',
 ]
 
 CORS_ALLOWED_METHODS = [
