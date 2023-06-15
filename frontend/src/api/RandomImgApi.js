@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// Here for code help, other than that it is deprecated.
+
 function RandomImage() {
   const [imageData, setImageData] = useState(null);
 

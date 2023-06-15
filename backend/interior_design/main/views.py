@@ -8,32 +8,29 @@ from PIL import Image, ImageFilter
 from .serializers import DataSerializer
 from .models import TestData
 from django.views.decorators.csrf import ensure_csrf_cookie
-# from .secret_settings import ran
 # For testing
-
-random_img_api_key = 'PO9vdDW0c5JsgnPJFaKQDGZ70fbEKbVV7XwyZMwya5I'
 
 
 class DataViewSet(viewsets.ModelViewSet):
     queryset = TestData.objects.all()
     serializer_class = DataSerializer
 
-
-def get_random_image(request):
-    api_key = random_img_api_key
-    url = 'https://api.unsplash.com/photos/random'
-    headers = {
-        'Authorization': f'Client-ID {api_key}'
-    }
-    params = {
-        'query': 'nature'  # Modify the query to suit your needs
-    }
-    response = requests.get(url, headers=headers, params=params)
-    if response.status_code == 200:
-        data = response.json()
-        return JsonResponse(data)
-    else:
-        return JsonResponse({'error': 'Failed to fetch image'}, status=500)
+# Here for code help, other than that deprecated.
+# def get_random_image(request):
+#     api_key = random_img_api_key
+#     url = 'https://api.unsplash.com/photos/random'
+#     headers = {
+#         'Authorization': f'Client-ID {api_key}'
+#     }
+#     params = {
+#         'query': 'nature'  # Modify the query to suit your needs
+#     }
+#     response = requests.get(url, headers=headers, params=params)
+#     if response.status_code == 200:
+#         data = response.json()
+#         return JsonResponse(data)
+#     else:
+#         return JsonResponse({'error': 'Failed to fetch image'}, status=500)
 
 
 def process_image(image_path, iterations):
