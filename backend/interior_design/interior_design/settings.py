@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os
 from pathlib import Path
 # For local development
-# from .secret_settings import sec_key
+from .secret_settings import sec_key
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,18 +22,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('SECRET_KEY', default='key')
+# SECRET_KEY = os.environ.get('SECRET_KEY', default='key')
 # For local dev
-# SECRET_KEY = sec_key
+SECRET_KEY = sec_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-# turn on to true when published
+DEBUG = True
+# turn on to False when published
 ALLOWED_HOSTS = []
 
-RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME:
-    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+# uncommnet for production maybe.
+# RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+# if RENDER_EXTERNAL_HOSTNAME:
+#     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -159,18 +160,16 @@ CORS_ALLOWED_HEADERS = [
 ]
 
 # CSRF_COOKIE_HTTPONLY = False
-CSRF_COOKIE_SECURE = True  # set to true when pushing to production
-SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = False  # set to true when pushing to production
+# SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SAMESITE = 'Lax'
 # CORS_ALLOW_CREDENTIALS = True
 # CORS_ORIGIN_ALLOW_ALL = False
 # CSRF_COOKIE_HTTPONLY = True
 # SESSION_COOKIE_SAMESITE = 'None'
 
+# For production
+# SECURE_SSL_REDIRECT = True
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
-
-# For production
-SECURE_SSL_REDIRECT = True

@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ClientImg from "../img_input/ClientImg";
-import ClientImgOut from "../img_output/ClientImgOut";
-import ProcessClientImg from "../img_input/ProcessClientImg";
 
 const FrontendApi = () => {
   const [data, setData] = useState([]);
   useState(false);
 
   useEffect(() => {
-    // tESTING CONNECTION
     axios
       .get("http://127.0.0.1:8000/data/")
       .then((response) => {
