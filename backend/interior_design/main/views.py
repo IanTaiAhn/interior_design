@@ -55,8 +55,15 @@ def upload_image(request):
 
         processed_image = process_image(save_location, 4)
 
-        response = HttpResponse(content_type="image/jpeg")
-        processed_image.save(response, "JPEG")
+        img_extension = os.path.splitext(save_location)
+        print(img_extension[1])
+        if img_extension[1] == ".png":
+            response = HttpResponse(content_type="image/png")
+            processed_image.save(response, "PNG")
+        elif img_extension[1] == ".jpeg":
+            response = HttpResponse(content_type="image/jpeg")
+            processed_image.save(response, "JPEG")
+
         os.remove(save_location)
         return response
     else:
