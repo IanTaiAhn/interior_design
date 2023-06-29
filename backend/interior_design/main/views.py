@@ -60,11 +60,12 @@ def upload_image(request):
         if img_extension[1] == ".png":
             response = HttpResponse(content_type="image/png")
             processed_image.save(response, "PNG")
-        elif img_extension[1] == ".jpeg":
+        elif img_extension[1] == ".jpeg" or img_extension[1] == ".jpg":
             response = HttpResponse(content_type="image/jpeg")
             processed_image.save(response, "JPEG")
 
         os.remove(save_location)
+
         return response
     else:
         return HttpResponse("Error: Upload failed", status=400)
