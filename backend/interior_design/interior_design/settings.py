@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = sec_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 # turn on to False when published
 ALLOWED_HOSTS = []
 
@@ -162,8 +162,8 @@ CORS_ALLOWED_HEADERS = [
 ]
 
 # CSRF_COOKIE_HTTPONLY = False
-# CSRF_COOKIE_SECURE = False  # set to true when pushing to production
-# SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True  # set to true when pushing to production
+SESSION_COOKIE_SECURE = True
 # CSRF_COOKIE_SAMESITE = 'Lax'
 # CORS_ALLOW_CREDENTIALS = True
 # CORS_ORIGIN_ALLOW_ALL = False
