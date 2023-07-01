@@ -15,13 +15,18 @@ function ClientImg() {
     // Make sure that the formData is an image.
 
     try {
-      const response = await fetch("http://localhost:8000/upload/", {
-        method: "POST",
-        headers: {
-          "X-CSRFToken": csrfToken,
-        },
-        body: formData,
-      });
+      // const response = await fetch("http://localhost:8000/upload/", { This is for the local server...
+
+      const response = await fetch(
+        "https://web-production-a9bb.up.railway.app/upload",
+        {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": csrfToken,
+          },
+          body: formData,
+        }
+      );
       if (navigator.cookieEnabled) {
         // Cookies are enabled
         console.log("Cookies are enabled in the browser");
