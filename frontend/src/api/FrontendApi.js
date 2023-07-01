@@ -8,7 +8,8 @@ const FrontendApi = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/data/")
+      // .get("https://web-production-a9bb.up.railway.app/data")
+      .get("http://127.0.0.1:8000/check")
       .then((response) => {
         setData(response.data);
       })
