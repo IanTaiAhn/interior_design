@@ -9,7 +9,7 @@ const FrontendApi = () => {
   useEffect(() => {
     axios
       // .get("https://web-production-a9bb.up.railway.app/check")
-      .get("http://127.0.0.1:8000/check")
+      .get("http://127.0.0.1:8000/health")
       .then((response) => {
         setData(response.data);
       })
