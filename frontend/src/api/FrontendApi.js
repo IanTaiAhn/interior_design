@@ -19,11 +19,9 @@ const FrontendApi = () => {
   }, []);
   return (
     <div>
-      <h1>Displays test data from backend if Django server is on</h1>
+      <h1>Health Check Local</h1>
       {/* Display the fetched data */}
-      {data.map((item) => (
-        <p key={item.id}>{item.name}</p>
-      ))}
+      {data && <p>{JSON.stringify(data)}</p>}
       <ClientImg />
     </div>
   );
