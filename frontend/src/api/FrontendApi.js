@@ -19,7 +19,7 @@ const FrontendApi = () => {
   }, []);
   return (
     <div>
-      <h1>Health Check Local</h1>
+      <h1>Health Check</h1>
       {/* Display the fetched data */}
       {data && <p>{JSON.stringify(data)}</p>}
       <ClientImg />

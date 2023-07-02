@@ -18,7 +18,7 @@ function ClientImg() {
       // const response = await fetch("http://localhost:8000/upload/", { This is for the local server...
       console.log(csrfToken);
       const response = await fetch(
-        "https://web-production-a9bb.up.railway.app/upload",
+        "https://web-production-a9bb.up.railway.app/upload/",
         {
           method: "POST",
           headers: {
