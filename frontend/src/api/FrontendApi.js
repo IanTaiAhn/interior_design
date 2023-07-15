@@ -16,7 +16,7 @@ const FrontendApi = () => {
   const createUser = async (userData) => {
     try {
       const response = await axios.post(
-        "https://web-production-a9bb.up.railway.app/create_user",
+        "https://web-production-a9bb.up.railway.app/create_user/",
         userData
       );
       console.log(response.data); // User created successfully
