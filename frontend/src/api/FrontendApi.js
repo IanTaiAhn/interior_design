@@ -25,7 +25,7 @@ const FrontendApi = () => {
     }
   };
 
-  // Usage
+  // Usage possibly will have to change the userdata each time until I can get my admin to work in django.
   const userData = {
     username: "exampleUser2",
     password: "examplePassword2",
