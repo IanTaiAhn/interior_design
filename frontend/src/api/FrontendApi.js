@@ -27,10 +27,10 @@ const FrontendApi = () => {
 
   // Usage
   const userData = {
-    username: "exampleUser",
-    password: "examplePassword",
-    email: "example@ex.com",
-    tokens: 5,
+    username: "exampleUser2",
+    password: "examplePassword2",
+    email: "example2@ex.com",
+    tokens: 10,
   };
 
   useEffect(() => {
