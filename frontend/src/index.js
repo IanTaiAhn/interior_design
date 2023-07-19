@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import "./index.css";
-import FrontendApi from "./api/FrontendApi";
+import ApiService from "./api/ApiService";
 import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<FrontendApi />);
+root.render(<ApiService />);
 
 // turn off strictmode to make it so that things get processed only once and not twice.
 // If you want to start measuring performance in your app, pass a function

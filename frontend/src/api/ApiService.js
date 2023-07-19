@@ -2,7 +2,10 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ClientImg from "../img_input/ClientImg";
 import CreateUserForm from "../user_form/CreateUserForm";
+import LoginUser from "../user_form/LoginUser";
+
 // This is base for all of the react components that show on the webpage.
+// TODO Will make a new base that contains the all the components.
 
 const FrontendApi = () => {
   const [data, setData] = useState([]);
@@ -51,6 +54,7 @@ const FrontendApi = () => {
       <h1>Health Check</h1>
       {/* <button onClick={handleClick}>Click Me</button> */}
       <CreateUserForm />
+      <LoginUser />
       {/* Display the fetched data */}
       {data && <p>{JSON.stringify(data)}</p>}
       <ClientImg />
