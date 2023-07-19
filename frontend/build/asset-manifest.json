@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.js": "/interior_design/static/js/main.ab07dfce.js",
+    "main.js": "/interior_design/static/js/main.bb174e99.js",
     "static/js/787.0759313b.chunk.js": "/interior_design/static/js/787.0759313b.chunk.js",
     "index.html": "/interior_design/index.html",
-    "main.ab07dfce.js.map": "/interior_design/static/js/main.ab07dfce.js.map",
+    "main.bb174e99.js.map": "/interior_design/static/js/main.bb174e99.js.map",
     "787.0759313b.chunk.js.map": "/interior_design/static/js/787.0759313b.chunk.js.map"
   },
   "entrypoints": [
-    "static/js/main.ab07dfce.js"
+    "static/js/main.bb174e99.js"
   ]
 }

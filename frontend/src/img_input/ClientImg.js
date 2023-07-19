@@ -10,6 +10,7 @@ function ClientImg() {
     setSelectedImage(file);
     const csrfToken = Cookies.get("csrftoken");
 
+    // I will send text and image for the selected prompt
     const formData = new FormData();
     formData.append("image", file);
     // Make sure that the formData is an image.

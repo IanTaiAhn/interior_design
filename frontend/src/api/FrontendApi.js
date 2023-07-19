@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import ClientImg from "../img_input/ClientImg";
+import CreateUserForm from "../user_form/CreateUserForm";
 // This is base for all of the react components that show on the webpage.
 
 const FrontendApi = () => {
@@ -27,10 +28,10 @@ const FrontendApi = () => {
 
   // Usage possibly will have to change the userdata each time until I can get my admin to work in django.
   const userData = {
-    username: "exampleUser2",
-    password: "examplePassword2",
-    email: "example2@ex.com",
-    tokens: 10,
+    username: "exampleUser3",
+    password: "examplePassword3",
+    email: "example3@ex.com",
+    tokens: 15,
   };
 
   useEffect(() => {
@@ -48,7 +49,8 @@ const FrontendApi = () => {
   return (
     <div>
       <h1>Health Check</h1>
-      <button onClick={handleClick}>Click Me</button>
+      {/* <button onClick={handleClick}>Click Me</button> */}
+      <CreateUserForm />
       {/* Display the fetched data */}
       {data && <p>{JSON.stringify(data)}</p>}
       <ClientImg />
