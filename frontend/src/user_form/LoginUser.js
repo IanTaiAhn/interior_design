@@ -17,10 +17,12 @@ const LoginUser = () => {
     try {
       // Send a POST request to Django login endpoint
       const response = await axios.post(
-        "https://web-production-a9bb.up.railway.app/login/",
+        "http://127.0.0.1:8000/login/",
         formData
       );
-
+      // "https://web-production-a9bb.up.railway.app/login/",
+      console.log("Username:", formData.username);
+      console.log("Password:", formData.password);
       // If login is successful, you can redirect to another page or perform other actions
       console.log(response.data); // Response data from Django, may contain user info or a success message
     } catch (error) {
