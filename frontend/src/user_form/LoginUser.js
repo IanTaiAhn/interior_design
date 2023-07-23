@@ -25,6 +25,7 @@ const LoginUser = () => {
       console.log("Password:", formData.password);
       // If login is successful, you can redirect to another page or perform other actions
       console.log(response.data); // Response data from Django, may contain user info or a success message
+      // !! Our response contains the token in it so now we can authenticate users and have certain elements pop up and such.
     } catch (error) {
       console.error(error);
     }
