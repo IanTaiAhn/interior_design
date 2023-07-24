@@ -18,10 +18,10 @@ const CreateUserForm = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        // "https://web-production-a9bb.up.railway.app/create_user/",
-        "http://127.0.0.1:8000/create_user/",
+        "https://web-production-a9bb.up.railway.app/create_user/",
         userData
       );
+      // "http://127.0.0.1:8000/create_user/",
       console.log("Username:", userData.username);
       console.log("Password:", userData.password);
       console.log(response.data); // User created successfully
