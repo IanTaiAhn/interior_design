@@ -3,6 +3,7 @@ import axios from "axios";
 import ClientImg from "../img_input/ClientImg";
 import CreateUserForm from "../user_form/CreateUserForm";
 import LoginUser from "../user_form/LoginUser";
+import JwtToken from "../auth/JwtToken";
 
 // This is base for all of the react components that show on the webpage.
 // TODO Will make a new base that contains the all the components.
@@ -55,6 +56,7 @@ const FrontendApi = () => {
       {/* <button onClick={handleClick}>Click Me</button> */}
       <CreateUserForm />
       <LoginUser />
+      <JwtToken />
       {/* Display the fetched data */}
       {data && <p>{JSON.stringify(data)}</p>}
       <ClientImg />
