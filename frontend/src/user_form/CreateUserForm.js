@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const CreateUserForm = () => {
   const [userData, setUserData] = useState({
@@ -17,6 +18,7 @@ const CreateUserForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const csrfToken = Cookies.get("csrftoken");
       const response = await axios.post(
         "http://127.0.0.1:8000/create_user/",
         userData

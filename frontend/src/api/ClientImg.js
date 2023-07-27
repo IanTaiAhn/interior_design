@@ -21,9 +21,11 @@ function ClientImg() {
       const csrfToken = Cookies.get("csrftoken");
       const jwtToken = localStorage.getItem("authToken"); // Replace this with the actual JWT token received from your server
       const response = await axios.post(
-        "http://localhost:8000/upload/",
+        "https://web-production-a9bb.up.railway.app/upload/",
+        // "http://localhost:8000/upload/",
         formData,
         {
+          responseType: "arraybuffer",
           headers: {
             "Content-Type": "multipart/form-data", // Set the content type for FormData
             Authorization: `Bearer ${jwtToken}`, // Include the JWT token in the Authorization header
@@ -34,9 +36,14 @@ function ClientImg() {
 
       // Handle the response as needed
       if (response.status === 200) {
-        const imageBlob = new Blob([response.data]);
-        const imageUrl = URL.createObjectURL(imageBlob);
-        setProcessedImage(imageUrl);
+        // const binaryData = new Uint8Array(response.data);
+        // console.log(binaryData);
+        console.log(response.data);
+        const imageBlob = new Blob([response.data], { type: "image/png" });
+        console.log(imageBlob);
+        // const imageUrl = URL.createObjectURL(imageBlob);
+        // const imageBlob = response.data;
+        setProcessedImage(imageBlob);
       } else {
         console.error("Error:", response.status);
       }
@@ -48,7 +55,6 @@ function ClientImg() {
 
   //   try {
   //     // const response = await fetch("http://localhost:8000/upload/", { This is for the local server...
-  //     // "https://web-production-a9bb.up.railway.app/upload/",
   //     console.log(csrfToken);
   //     const response = await fetch("http://localhost:8000/upload/", {
   //       method: "POST",
@@ -90,7 +96,7 @@ function ClientImg() {
       {processedImage && (
         <div>
           <h3>Processed Image:</h3>
-          <img src={processedImage} alt="Processed" />
+          <img src={URL.createObjectURL(processedImage)} alt="Processed" />
         </div>
       )}
     </div>

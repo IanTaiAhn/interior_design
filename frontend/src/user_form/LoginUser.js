@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Cookies from "js-cookie";
+
+//TODO force a refresh for the api call to work.
 
 const LoginUser = () => {
   const [formData, setFormData] = useState({
@@ -15,12 +18,18 @@ const LoginUser = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const csrfToken = Cookies.get("csrftoken");
       // Send a POST request to Django login endpoint
+      // "http://127.0.0.1:8000/login/",
       const response = await axios.post(
-        "http://127.0.0.1:8000/login/",
-        formData
+        "https://web-production-a9bb.up.railway.app/login/",
+        formData,
+        {
+          headers: {
+            "X-CSRFToken": csrfToken, // Include the CSRF token as a custom header
+          },
+        }
       );
-      // "https://web-production-a9bb.up.railway.app/login/",
       console.log("Username:", formData.username);
       console.log("Password:", formData.password);
       // If login is successful, you can redirect to another page or perform other actions
