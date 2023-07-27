@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+// This component is mostly for dev usage.
+
 const BackendEndpoint = "http://127.0.0.1:8000/check_authtoken/";
 
 const JwtToken = () => {
@@ -13,6 +15,7 @@ const JwtToken = () => {
       .post(BackendEndpoint, { token: jwtToken })
       .then((response) => {
         setIsTokenExpired(response.data.expired);
+        // console.log(response);
       })
       .catch((error) => {
         console.error("Error checking token expiration:", error);
@@ -22,7 +25,7 @@ const JwtToken = () => {
   return (
     <div>
       {isTokenExpired === null ? (
-        <p>Loading...</p>
+        <p>User has logged out</p>
       ) : isTokenExpired ? (
         <p>Token has expired.</p>
       ) : (
