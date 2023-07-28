@@ -17,12 +17,12 @@ function ClientImg() {
     // formData.append("Authorization:", `${jwtToken}`);
     // Make sure that the formData is an image.
 
+    // "https://web-production-a9bb.up.railway.app/upload/",
     try {
       const csrfToken = Cookies.get("csrftoken");
       const jwtToken = localStorage.getItem("authToken"); // Replace this with the actual JWT token received from your server
       const response = await axios.post(
-        "https://web-production-a9bb.up.railway.app/upload/",
-        // "http://localhost:8000/upload/",
+        "http://localhost:8000/upload/",
         formData,
         {
           responseType: "arraybuffer",

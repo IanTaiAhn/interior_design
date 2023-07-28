@@ -4,10 +4,10 @@ import axios from "axios";
 const HealthCheck = () => {
   const [data, setData] = useState([]);
 
+  // .get("https://web-production-a9bb.up.railway.app/health")
   useEffect(() => {
     axios
-      // .get("http://127.0.0.1:8000/health")
-      .get("https://web-production-a9bb.up.railway.app/health")
+      .get("http://127.0.0.1:8000/health")
       .then((response) => {
         setData(response.data);
       })

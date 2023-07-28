@@ -15,14 +15,14 @@ const LoginUser = () => {
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
   };
 
+  const csrfToken = Cookies.get("csrftoken");
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const csrfToken = Cookies.get("csrftoken");
       // Send a POST request to Django login endpoint
-      // "http://127.0.0.1:8000/login/",
+      // "https://web-production-a9bb.up.railway.app/login/",
       const response = await axios.post(
-        "https://web-production-a9bb.up.railway.app/login/",
+        "http://127.0.0.1:8000/login/",
         formData,
         {
           headers: {
