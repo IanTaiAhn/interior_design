@@ -13,7 +13,8 @@ const CreateCustomerForm = () => {
   //     const { name, value } = e.target;
   //     setFormData({ ...formData, [name]: value });
   //   };
-
+  // I'm gonna steal how railway did their stuff.
+  // We'll just use the logged in customer's info and then all we need is their card.
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -21,7 +22,8 @@ const CreateCustomerForm = () => {
       const token = localStorage.getItem("authToken");
 
       const response = await axios.post(
-        "http://127.0.0.1:8000/create_customer/",
+        "https://web-production-a9bb.up.railway.app/create_customer/",
+        // "http://127.0.0.1:8000/create_customer/",
         // formData,
         {},
         {

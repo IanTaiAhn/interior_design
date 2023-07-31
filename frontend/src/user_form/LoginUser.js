@@ -20,9 +20,9 @@ const LoginUser = () => {
     event.preventDefault();
     try {
       // Send a POST request to Django login endpoint
-      // "https://web-production-a9bb.up.railway.app/login/",
       const response = await axios.post(
-        "http://127.0.0.1:8000/login/",
+        // "http://127.0.0.1:8000/login/",
+        "https://web-production-a9bb.up.railway.app/login/",
         formData,
         {
           headers: {
