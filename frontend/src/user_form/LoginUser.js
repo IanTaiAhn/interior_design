@@ -18,7 +18,6 @@ const LoginUser = () => {
   const csrfToken = Cookies.get("csrftoken");
   const handleSubmit = async (event) => {
     event.preventDefault();
-    window.location.reload();
     try {
       // Send a POST request to Django login endpoint
       const response = await axios.post(
@@ -39,6 +38,7 @@ const LoginUser = () => {
       // console.log(response.data.token);
       localStorage.setItem("authToken", response.data.token);
       console.log(" LocalStorage: " + localStorage.getItem("authToken"));
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

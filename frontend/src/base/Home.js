@@ -5,10 +5,12 @@ import LogoutUser from "../user_form/LogoutUser";
 import JwtToken from "../auth/JwtToken";
 import ClientImg from "../api/ClientImg";
 import CreateCustomerForm from "../user_form/CreateCustomerForm";
+import NavBar from "../nav/Navbar";
 
 const Home = () => {
   return (
     <div>
+      {/* <NavBar /> */}
       <HealthCheck />
       <CreateUserForm />
       <CreateCustomerForm />
