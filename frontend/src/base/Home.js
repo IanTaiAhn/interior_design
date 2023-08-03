@@ -7,6 +7,7 @@ import ClientImg from "../api/ClientImg";
 import CreateCustomerForm from "../user_form/CreateCustomerForm";
 import NavBar from "../nav/Navbar";
 
+// This is for testing my components and seeing where it is.
 const Home = () => {
   return (
     <div>
