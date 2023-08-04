@@ -8,7 +8,7 @@ import CreateCustomerForm from "../user_form/CreateCustomerForm";
 import NavBar from "../nav/Navbar";
 
 // This is for testing my components and seeing where it is.
-const Home = () => {
+const Dev = () => {
   return (
     <div>
       {/* <NavBar /> */}
@@ -22,4 +22,4 @@ const Home = () => {
     </div>
   );
 };
-export default Home;
+export default Dev;

@@ -18,6 +18,8 @@ import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import MailIcon from "@mui/icons-material/Mail";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import LogoDevIcon from "@mui/icons-material/LogoDev";
+import WeekendIcon from "@mui/icons-material/Weekend";
 import { Link, NavLink } from "react-router-dom"; // Will have to play around with this.
 
 const Navbar = () => {
@@ -37,8 +39,11 @@ const Navbar = () => {
 
   const drawerItems = [
     { text: "Profile", icon: <PersonOutlineIcon />, link: "/" }, // Replace with your desired routes
-    { text: "About", icon: <InfoIcon />, link: "/health" },
     { text: "Contact", icon: <MailIcon />, link: "/contact" },
+    { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
+    { text: "Interior", icon: <WeekendIcon />, link: "/interior" },
+
+    // for dev purposes
   ];
 
   const list = () => (

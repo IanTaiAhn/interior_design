@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { Container, Typography, Box, Button } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 function ClientImg() {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -57,20 +59,36 @@ function ClientImg() {
     <div>
       <h2>Image Uploader</h2>
       <input type="file" accept="image/*" onChange={handleImageUpload} />
-      {selectedImage && (
-        <div>
-          <h3>Selected Image:</h3>
-          <img src={URL.createObjectURL(selectedImage)} alt="Selected" />
-        </div>
-      )}
-      {processedImage && (
-        <div>
-          <h3>Processed Image:</h3>
-          <img src={URL.createObjectURL(processedImage)} alt="Processed" />
-        </div>
-      )}
+
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        {selectedImage && (
+          <div>
+            <h3>Selected Image:</h3>
+            <img
+              src={URL.createObjectURL(selectedImage)}
+              alt="Selected"
+              style={{ width: "100%", maxWidth: "300px" }} // Adjust the max width as needed
+            />
+          </div>
+        )}
+        {selectedImage && (
+          <div style={{ margin: "0 20px" }}>
+            <ArrowForwardIcon sx={{ fontSize: 50, color: "gray" }} />{" "}
+            {/* Use the ArrowForwardIcon */}
+          </div>
+        )}
+        {processedImage && (
+          <div>
+            <h3>Processed Image:</h3>
+            <img
+              src={URL.createObjectURL(processedImage)}
+              alt="Processed"
+              style={{ width: "100%", maxWidth: "300px" }} // Adjust the max width as needed
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
-
 export default ClientImg;
