@@ -53,36 +53,6 @@ function ClientImg() {
     }
   };
 
-  //   try {
-  //     // const response = await fetch("http://localhost:8000/upload/", { This is for the local server...
-  //     console.log(csrfToken);
-  //     const response = await fetch("http://localhost:8000/upload/", {
-  //       method: "POST",
-  //       headers: {
-  //         // "Content-Type": "multipart/form-data",
-  //         // Authorization: `Bearer ${jwtToken}`,
-  //       },
-  //       body: formData,
-  //     });
-  //     // For debugging purposes.
-  //     // if (navigator.cookieEnabled) {
-  //     //   // Cookies are enabled
-  //     //   console.log("Cookies are enabled in the browser");
-  //     // } else {
-  //     //   // Cookies are disabled
-  //     //   console.log("Cookies are disabled in the browser");
-  //     // }
-  //     if (response.ok) {
-  //       const imageBlob = await response.blob();
-  //       const imageUrl = URL.createObjectURL(imageBlob);
-  //       setProcessedImage(imageUrl);
-  //     } else {
-  //       console.error("Error:", response.status);
-  //     }
-  //   } catch (error) {
-  //     console.error("Error uploading image:", error);
-  //   }
-  // };
   return (
     <div>
       <h2>Image Uploader</h2>

@@ -12,30 +12,39 @@ import {
   ListItemIcon,
   useTheme,
 } from "@mui/material";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import MailIcon from "@mui/icons-material/Mail";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import { Link, NavLink } from "react-router-dom"; // Will have to play around with this.
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const styles = {
+    link: {
+      textDecoration: "none", // Remove underline
+      color: "white", // Set the default text color
+    },
+  };
 
   const toggleDrawer = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
   const drawerItems = [
-    { text: "Home", icon: <HomeIcon />, link: "/" }, // Replace with your desired routes
-    { text: "About", icon: <InfoIcon />, link: "/about" },
+    { text: "Profile", icon: <PersonOutlineIcon />, link: "/" }, // Replace with your desired routes
+    { text: "About", icon: <InfoIcon />, link: "/health" },
     { text: "Contact", icon: <MailIcon />, link: "/contact" },
   ];
 
   const list = () => (
     <List>
       {drawerItems.map(({ text, icon, link }, index) => (
-        <ListItem button key={index} component="a" href={link}>
+        <ListItem key={index} component={Link} to={link}>
           <ListItemIcon>{icon}</ListItemIcon>
           <ListItemText primary={text} />
         </ListItem>
@@ -49,8 +58,8 @@ const Navbar = () => {
         <Typography
           key={index}
           variant="h6"
-          component="a"
-          href={link}
+          component={Link}
+          to={link}
           style={{
             color: "white",
             textDecoration: "none",
@@ -68,7 +77,9 @@ const Navbar = () => {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Interior Design AI
+            <NavLink to="/" style={styles.link}>
+              Interior Design AI
+            </NavLink>
           </Typography>
           {isSmallScreen ? (
             <IconButton
