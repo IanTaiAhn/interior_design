@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import "./index.css";
+import "./index.css";
 // import ApiService from "./deprecated/ApiService";
 import Home from "./base/Dev";
 import reportWebVitals from "./reportWebVitals";
@@ -8,6 +8,7 @@ import CreateUserForm2 from "./user_form/CreateUserForm2";
 import AppRoutes from "./nav/AppRoutes";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 // import { Switch } from "react-router"; // Import Switch from react-router
+import StickyFooter from "./base/Footer";
 
 import Navbar from "./nav/Navbar";
 
@@ -17,6 +18,8 @@ root.render(
   <Router>
     <Navbar />
     <AppRoutes />
+    {/* My components when rendered are structured here. */}
+    <StickyFooter />
   </Router>
 );
 

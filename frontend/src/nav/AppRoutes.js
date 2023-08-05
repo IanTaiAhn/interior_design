@@ -4,9 +4,11 @@ import HealthCheck from "../api/HealthCheck";
 import ClientImg from "../api/ClientImg";
 import { Link } from "react-router-dom";
 import Dev from "../base/Dev";
+import HomePage from "../base/HomePage";
 
 // const About = () => <h2>This is the About page.</h2>;
-const Home = () => <h2>This is the temp home page.</h2>;
+// const Home = () => <h2>This is the temp home page.</h2>;
+
 const Contact = () => <h2>Contact us for more information.</h2>;
 function NoMatch() {
   return (
@@ -22,7 +24,7 @@ function NoMatch() {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<HomePage />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/dev" element={<Dev />} />
       <Route path="/interior" element={<ClientImg />} />

@@ -20,6 +20,8 @@ import MailIcon from "@mui/icons-material/Mail";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LogoDevIcon from "@mui/icons-material/LogoDev";
 import WeekendIcon from "@mui/icons-material/Weekend";
+import DiamondIcon from "@mui/icons-material/Diamond";
+import { blueGrey } from "@mui/material/colors";
 import { Link, NavLink } from "react-router-dom"; // Will have to play around with this.
 
 const Navbar = () => {
@@ -29,7 +31,7 @@ const Navbar = () => {
   const styles = {
     link: {
       textDecoration: "none", // Remove underline
-      color: "white", // Set the default text color
+      color: "black", // Set the default text color
     },
   };
 
@@ -66,7 +68,7 @@ const Navbar = () => {
           component={Link}
           to={link}
           style={{
-            color: "white",
+            color: "black",
             textDecoration: "none",
             marginLeft: index > 0 ? "20px" : 0,
           }}
@@ -79,11 +81,14 @@ const Navbar = () => {
 
   return (
     <React.Fragment>
-      <AppBar position="static">
+      <AppBar position="static" sx={{ backgroundColor: blueGrey[50] }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             <NavLink to="/" style={styles.link}>
-              Interior Design AI
+              <div className="flex">
+                <DiamondIcon fontSize="large" />
+                <h1 className="font-mono pl-2">AI</h1>
+              </div>
             </NavLink>
           </Typography>
           {isSmallScreen ? (

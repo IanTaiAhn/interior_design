@@ -60,7 +60,14 @@ function ClientImg() {
       <h2>Image Uploader</h2>
       <input type="file" accept="image/*" onChange={handleImageUpload} />
 
-      <div style={{ display: "flex", justifyContent: "space-between" }}>
+      <div
+        // style={{
+        //   display: "flex",
+        //   justifyContent: "center",
+        //   alignItems: "center",
+        // }}
+        className="flex justify-center items-center"
+      >
         {selectedImage && (
           <div>
             <h3>Selected Image:</h3>
