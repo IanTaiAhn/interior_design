@@ -15,6 +15,9 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
+import room from "../img/bare_room.jpg";
+import roomP from "../img/img_result.png";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 function Copyright(props) {
   return (
@@ -184,27 +187,20 @@ export default function Pricing() {
       </Container>
       {/* End hero unit */}
       <Container maxWidth="md" component="main">
-        <Grid container spacing={5} alignItems="flex-end">
-          {tiers.map((tier) => (
-            // Enterprise card is full width at sm breakpoint
-            <Grid
-              item
-              key={tier.title}
-              xs={12}
-              sm={tier.title === "Enterprise" ? 12 : 6}
-              md={4}
-            >
-              {/* Insert card here if wanted. */}
-              <div>
-                <h3></h3>
-              </div>
-
-              <div>
-                <h3></h3>
-              </div>
-            </Grid>
-          ))}
-        </Grid>
+        <div className="flex justify-center items-center">
+          {/* img 1 */}
+          <div className="p-4">
+            <img src={room} className="w-full h-auto" />
+          </div>
+          <div className="items-center">
+            <ArrowForwardIcon sx={{ fontSize: 50, color: "gray" }} />
+          </div>
+          {/* turns into this. */}
+          {/* img 2 */}
+          <div className="p-4">
+            <img src={roomP} className="w-full h-auto" />
+          </div>
+        </div>
       </Container>
       {/* Footer */}
       {/* <Container
