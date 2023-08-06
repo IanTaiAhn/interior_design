@@ -12,11 +12,11 @@ import Grid from "@mui/material/Grid";
 import StarIcon from "@mui/icons-material/StarBorder";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
 import GlobalStyles from "@mui/material/GlobalStyles";
 import Container from "@mui/material/Container";
 import room from "../img/bare_room.jpg";
 import roomP from "../img/img_result.png";
+import { Link } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 function Copyright(props) {
@@ -28,7 +28,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
+      <Link color="inherit" to="/home">
         Your Website
       </Link>{" "}
       {new Date().getFullYear()}
@@ -117,48 +117,6 @@ export default function Pricing() {
         styles={{ ul: { margin: 0, padding: 0, listStyle: "none" } }}
       />
       <CssBaseline />
-      {/* <AppBar
-        position="static"
-        color="default"
-        elevation={0}
-        sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
-      >
-        <Toolbar sx={{ flexWrap: "wrap" }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-            Company name
-          </Typography>
-          <nav>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Features
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Enterprise
-            </Link>
-            <Link
-              variant="button"
-              color="text.primary"
-              href="#"
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Support
-            </Link>
-          </nav>
-          <Button href="#" variant="outlined" sx={{ my: 1, mx: 1.5 }}>
-            Login
-          </Button>
-        </Toolbar>
-      </AppBar> */}
-      {/* Hero unit */}
       <Container
         disableGutters
         maxWidth="sm"
@@ -180,12 +138,11 @@ export default function Pricing() {
           color="text.secondary"
           component="p"
         >
-          Find a style you vibe with and upload an image of your chosen room.
+          Find a style you vibe with and upload an image.
           <br></br>
           It's that easy.
         </Typography>
       </Container>
-      {/* End hero unit */}
       <Container maxWidth="md" component="main">
         <div className="flex justify-center items-center">
           {/* img 1 */}
@@ -201,6 +158,16 @@ export default function Pricing() {
             <img src={roomP} className="w-full h-auto" />
           </div>
         </div>
+        <Link to="/interior">
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
+          >
+            Get Started
+          </Button>
+        </Link>
       </Container>
       {/* Footer */}
       {/* <Container
@@ -236,59 +203,3 @@ export default function Pricing() {
     </ThemeProvider>
   );
 }
-
-/* <Card>
-  <CardHeader
-    title={tier.title}
-    subheader={tier.subheader}
-    titleTypographyProps={{ align: "center" }}
-    action={tier.title === "Pro" ? <StarIcon /> : null}
-    subheaderTypographyProps={{
-      align: "center",
-    }}
-    sx={{
-      backgroundColor: (theme) =>
-        theme.palette.mode === "light"
-          ? theme.palette.grey[200]
-          : theme.palette.grey[700],
-    }}
-  />
-  <CardContent>
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "baseline",
-        mb: 2,
-      }}
-    >
-      <Typography
-        component="h2"
-        variant="h3"
-        color="text.primary"
-      >
-        ${tier.price}
-      </Typography>
-      <Typography variant="h6" color="text.secondary">
-        /mo
-      </Typography>
-    </Box>
-    <ul>
-      {tier.description.map((line) => (
-        <Typography
-          component="li"
-          variant="subtitle1"
-          align="center"
-          key={line}
-        >
-          {line}
-        </Typography>
-      ))}
-    </ul>
-  </CardContent>
-  <CardActions>
-    <Button fullWidth variant={tier.buttonVariant}>
-      {tier.buttonText}
-    </Button>
-  </CardActions>
-</Card> */
