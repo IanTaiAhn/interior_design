@@ -13,7 +13,7 @@ const CreateCustomerForm = () => {
   //     const { name, value } = e.target;
   //     setFormData({ ...formData, [name]: value });
   //   };
-  // I'm gonna steal how railway did their stuff.
+  // I'm gonna follow how railway did their stuff.
   // We'll just use the logged in customer's info and then all we need is their card.
   const handleSubmit = async (e) => {
     e.preventDefault();

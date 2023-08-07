@@ -1,4 +1,6 @@
 import * as React from "react";
+import axios from "axios";
+import Cookies from "js-cookie";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -13,36 +15,37 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 // TODO remove, this demo shouldn't need to reset the theme.
-
 const defaultTheme = createTheme();
 
 export default function SignUp() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const userData = new FormData(event.currentTarget);
+
+    try {
+      const csrfToken = Cookies.get("csrftoken");
+      const response = await axios.post(
+        // "https://web-production-a9bb.up.railway.app/create_user/",
+        "http://127.0.0.1:8000/create_user/",
+        userData,
+        {
+          headers: {
+            "Content-Type": "application/json", // Set the content type for FormData
+          },
+        }
+      );
+      // console.log("Username:", userData.username);
+      // console.log("Password:", userData.password);
+      console.log(response.data); // User created successfully
+    } catch (error) {
+      console.error(error);
+    }
+    // const data = new FormData(event.currentTarget);
+    // console.log({
+    //   email: data.get("email"),
+    //   password: data.get("password"),
+    // });
   };
 
   return (
@@ -70,7 +73,7 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
+              {/* <Grid item xs={12} sm={6}>
                 <TextField
                   autoComplete="given-name"
                   name="firstName"
@@ -89,6 +92,17 @@ export default function SignUp() {
                   label="Last Name"
                   name="lastName"
                   autoComplete="family-name"
+                />
+              </Grid> */}
+              <Grid item xs={12}>
+                <TextField
+                  autoComplete="given-name"
+                  name="username"
+                  required
+                  fullWidth
+                  id="username"
+                  label="Username"
+                  autoFocus
                 />
               </Grid>
               <Grid item xs={12}>
@@ -138,7 +152,6 @@ export default function SignUp() {
             </Grid>
           </Box>
         </Box>
-        <Copyright sx={{ mt: 5 }} />
       </Container>
     </ThemeProvider>
   );

@@ -5,7 +5,7 @@ import ClientImg from "../api/ClientImg";
 import { Link } from "react-router-dom";
 import Dev from "../base/Dev";
 import HomePage from "../base/HomePage";
-
+import CreateUserForm2 from "../user_form/CreateUserForm2";
 // const About = () => <h2>This is the About page.</h2>;
 // const Home = () => <h2>This is the temp home page.</h2>;
 
@@ -28,6 +28,8 @@ const AppRoutes = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/dev" element={<Dev />} />
       <Route path="/interior" element={<ClientImg />} />
+      <Route path="/c2" element={<CreateUserForm2 />} />
+
       {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit
                 routes for. */}
