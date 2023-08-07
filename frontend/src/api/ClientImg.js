@@ -60,13 +60,9 @@ function ClientImg() {
 
       // Handle the response as needed
       if (response.status === 200) {
-        // const binaryData = new Uint8Array(response.data);
-        // console.log(binaryData);
         console.log(response.data);
         const imageBlob = new Blob([response.data], { type: "image/png" });
         console.log(imageBlob);
-        // const imageUrl = URL.createObjectURL(imageBlob);
-        // const imageBlob = response.data;
         setProcessedImage(imageBlob);
       } else {
         console.error("Error:", response.status);
@@ -98,18 +94,15 @@ function ClientImg() {
               },
             }}
           >
-            {/* Your image will go inside this box */}
             <img
               src={URL.createObjectURL(selectedImage)}
               alt="Selected"
-              style={{ width: "100%", height: "auto" }} // Adjust the max width as needed
+              className="w-full h-full"
             />
-            {/* <h3>Selected Image:</h3> */}
-            {/* Add your image component or image URL here */}
           </Box>
         ) : (
           <div>
-            {/* <label htmlFor="upload-input"> Upload here</label> */}
+            {/* This renders if selectedImage has not been chosen */}
             <Box
               sx={{
                 border: "1px solid #ddd", // Customize the border color and thickness as needed
@@ -122,26 +115,30 @@ function ClientImg() {
                 },
               }}
             >
-              <div className="w-full">
+              {/* <div className="w-full h-full hover:bg-slate-400">
                 <input
-                  className="w-full"
+                  className="w-full h-full"
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
                 />
+              </div> */}
+              <div class="relative">
+                <input
+                  className="absolute opacity-0 w-full h-full"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageUpload}
+                />
+                <div class="bg-gray-100 p-4 rounded-md">
+                  <span class="block text-gray-500">
+                    Click to upload an image
+                  </span>
+                </div>
               </div>
-              {/* <input
-                id="upload-input"
-                type="file"
-                accept="image/*"
-                onChange={handleImageUpload}
-                style={{ display: "none" }}
-              /> */}
             </Box>
           </div>
         )}
-        {/* {processedImage && (
-        )} */}
         <div className="m-4">
           {screenWidth > 640 ? (
             <ArrowForwardIcon sx={{ fontSize: 50, color: "gray" }} />
@@ -165,13 +162,12 @@ function ClientImg() {
             <img
               src={URL.createObjectURL(processedImage)}
               alt="Selected"
-              style={{ width: "100%", height: "auto" }} // Adjust the max width as needed
+              className="w-full h-full"
             />
           </Box>
         ) : (
           <div>
-            {/* The element to display when selectedImage is false */}
-            {/* ... */}
+            {/* The element to display when processedImage is false */}
             <Box
               sx={{
                 border: "1px solid #ddd", // Customize the border color and thickness as needed
@@ -183,14 +179,29 @@ function ClientImg() {
                   height: "350px",
                 },
               }}
-            >
-              {/* Your image will go inside this box */}
-              {/* Add your image component or image URL here */}
-            </Box>
+            ></Box>
           </div>
         )}
       </div>
-      {/* <input type="file" accept="image/*" onChange={handleImageUpload} /> */}
+      {processedImage ? (
+        <div className="p-2 mt-4 sm:mt-8 flex items-center justify-center">
+          <div class="relative">
+            <input
+              className="absolute opacity-0 w-full h-full"
+              type="file"
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+            <div class="bg-gray-100 p-4 rounded-md">
+              <span class="block text-gray-600 hover:text-green-100">
+                <p className="hover:text-green-400">Generate Again?</p>
+              </span>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -18,6 +18,7 @@ import room from "../img/bare_room.jpg";
 import roomP from "../img/img_result.png";
 import { Link } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 function Copyright(props) {
   return (
@@ -37,80 +38,24 @@ function Copyright(props) {
   );
 }
 
-const tiers = [
-  //   {
-  //     title: "Free",
-  //     price: "0",
-  //     description: [
-  //       "10 users included",
-  //       "2 GB of storage",
-  //       "Help center access",
-  //       "Email support",
-  //     ],
-  //     buttonText: "Sign up for free",
-  //     buttonVariant: "outlined",
-  //   },
-  //   {
-  //     title: "Pro",
-  //     subheader: "Most popular",
-  //     price: "15",
-  //     description: [
-  //       "20 users included",
-  //       "10 GB of storage",
-  //       "Help center access",
-  //       "Priority email support",
-  //     ],
-  //     buttonText: "Get started",
-  //     buttonVariant: "contained",
-  //   },
-  //   {
-  //     title: "Enterprise",
-  //     price: "30",
-  //     description: [
-  //       "50 users included",
-  //       "30 GB of storage",
-  //       "Help center access",
-  //       "Phone & email support",
-  //     ],
-  //     buttonText: "Contact us",
-  //     buttonVariant: "outlined",
-  //   },
-];
-
-// const footers = [
-//   {
-//     title: "Company",
-//     description: ["Team", "History", "Contact us", "Locations"],
-//   },
-//   {
-//     title: "Features",
-//     description: [
-//       "Cool stuff",
-//       "Random feature",
-//       "Team feature",
-//       "Developer stuff",
-//       "Another one",
-//     ],
-//   },
-//   {
-//     title: "Resources",
-//     description: [
-//       "Resource",
-//       "Resource name",
-//       "Another resource",
-//       "Final resource",
-//     ],
-//   },
-//   {
-//     title: "Legal",
-//     description: ["Privacy policy", "Terms of use"],
-//   },
-// ];
-
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Pricing() {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    // Add event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyles
@@ -143,63 +88,93 @@ export default function Pricing() {
           It's that easy.
         </Typography>
       </Container>
-      <Container maxWidth="md" component="main">
-        <div className="flex justify-center items-center">
-          {/* img 1 */}
-          <div className="p-4">
-            <img src={room} className="w-full h-auto" />
-          </div>
-          <div className="items-center">
+      {/* Start of imgages */}
+      <div className="flex flex-col justify-center items-center sm:flex-row">
+        <Box
+          sx={{
+            border: "1px solid #ddd", // Customize the border color and thickness as needed
+            borderRadius: "8px", // Optional: To add rounded corners
+            width: "250px", // Customize the width of the outline
+            height: "250px", // Customize the height of the outline
+            "@media (min-width: 640px)": {
+              width: "350px",
+              height: "350px",
+            },
+          }}
+        >
+          {/* Your image will go inside this box */}
+          <img
+            src={room}
+            alt="Selected"
+            // style={{ width: "100%", height: "auto" }} // Adjust the max width as needed
+            className="w-full h-full"
+          />
+          {/* <h3>Selected Image:</h3> */}
+          {/* Add your image component or image URL here */}
+        </Box>
+        <div className="m-4">
+          {screenWidth > 640 ? (
             <ArrowForwardIcon sx={{ fontSize: 50, color: "gray" }} />
-          </div>
-          {/* turns into this. */}
-          {/* img 2 */}
-          <div className="p-4">
-            <img src={roomP} className="w-full h-auto" />
-          </div>
+          ) : (
+            <ArrowDownwardIcon sx={{ fontSize: 50, color: "gray" }} />
+          )}
         </div>
+        <Box
+          sx={{
+            border: "1px solid #ddd", // Customize the border color and thickness as needed
+            borderRadius: "8px", // Optional: To add rounded corners
+            width: "250px", // Customize the width of the outline
+            height: "250px", // Customize the height of the outline
+            "@media (min-width: 640px)": {
+              width: "350px",
+              height: "350px",
+            },
+          }}
+        >
+          {/* Your image will go inside this box */}
+          <img
+            src={roomP}
+            alt="Selected"
+            style={{ width: "100%", height: "auto" }} // Adjust the max width as needed
+          />
+          {/* <h3>Selected Image:</h3> */}
+          {/* Add your image component or image URL here */}
+        </Box>
+      </div>
+      <div className="p-2 mt-4 sm:mt-8 flex items-center justify-center">
         <Link to="/interior">
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
+          <Button type="submit" variant="contained">
             Get Started
           </Button>
         </Link>
-      </Container>
-      {/* Footer */}
-      {/* <Container
-        maxWidth="md"
-        component="footer"
-        sx={{
-          borderTop: (theme) => `1px solid ${theme.palette.divider}`,
-          mt: 8,
-          py: [3, 6],
-        }}
-      >
-        <Grid container spacing={4} justifyContent="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="text.primary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="text.secondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Copyright sx={{ mt: 5 }} />
-      </Container> */}
-      {/* End footer */}
+      </div>
     </ThemeProvider>
   );
 }
+
+// <Container maxWidth="md" component="main">
+//   <div className="flex justify-center items-center">
+//     {/* img 1 */}
+//     <div className="p-4">
+//       <img src={room} className="w-full h-auto" />
+//     </div>
+//     <div className="items-center">
+//       <ArrowForwardIcon sx={{ fontSize: 50, color: "gray" }} />
+//     </div>
+//     {/* turns into this. */}
+//     {/* img 2 */}
+//     <div className="p-4">
+//       <img src={roomP} className="w-full h-auto" />
+//     </div>
+//   </div>
+// <Link to="/interior">
+//   <Button
+//     type="submit"
+//     fullWidth
+//     variant="contained"
+//     sx={{ mt: 3, mb: 2 }}
+//   >
+//     Get Started
+//   </Button>
+// </Link>
+// </Container>
