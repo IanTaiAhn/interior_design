@@ -26,12 +26,12 @@ function NoMatch() {
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/home" element={<HomePage />} />
       <Route path="/contact" element={<Contact />} />
       <Route path="/dev" element={<Dev />} />
       <Route path="/interior" element={<ClientImg />} />
-      <Route path="/l2" element={<LoginUser2 />} />
-      <Route path="/c2" element={<CreateUserForm2 />} />
+      <Route path="/login" element={<LoginUser2 />} />
+      <Route path="/create_user" element={<CreateUserForm2 />} />
       <Route path="/logout" element={<Logout />} />
 
       {/* Using path="*"" means "match anything", so this route

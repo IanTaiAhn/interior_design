@@ -124,7 +124,7 @@ const Navbar = () => {
       <AppBar position="static" sx={{ backgroundColor: blueGrey[50] }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <NavLink to="/" style={styles.link}>
+            <NavLink to="/home" style={styles.link}>
               <div className="flex">
                 <DiamondIcon fontSize="large" />
                 <h1 className="font-mono pl-2">AI</h1>
