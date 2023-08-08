@@ -7,6 +7,7 @@ import Dev from "../base/Dev";
 import HomePage from "../base/HomePage";
 import CreateUserForm2 from "../user_form/CreateUserForm2";
 import LoginUser2 from "../user_form/LoginUser2";
+import Logout from "../user_form/LogoutUser2";
 // const About = () => <h2>This is the About page.</h2>;
 // const Home = () => <h2>This is the temp home page.</h2>;
 
@@ -31,6 +32,7 @@ const AppRoutes = () => {
       <Route path="/interior" element={<ClientImg />} />
       <Route path="/l2" element={<LoginUser2 />} />
       <Route path="/c2" element={<CreateUserForm2 />} />
+      <Route path="/logout" element={<Logout />} />
 
       {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit

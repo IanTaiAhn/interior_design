@@ -21,8 +21,12 @@ import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LogoDevIcon from "@mui/icons-material/LogoDev";
 import WeekendIcon from "@mui/icons-material/Weekend";
 import DiamondIcon from "@mui/icons-material/Diamond";
+import AssignmentIndIcon from "@mui/icons-material/AssignmentInd";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 import { blueGrey } from "@mui/material/colors";
 import { Link, NavLink } from "react-router-dom"; // Will have to play around with this.
+import LogoutUser from "../user_form/LogoutUser";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -61,9 +65,11 @@ const Navbar = () => {
     // option to log out
     drawerItems = [
       // { text: "Profile", icon: <PersonOutlineIcon />, link: "/" }, // Replace with your desired routes
-      { text: "Contact", icon: <MailIcon />, link: "/contact" },
-      { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
+      // { text: "Contact", icon: <MailIcon />, link: "/contact" },
+      // { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
       { text: "Interior", icon: <WeekendIcon />, link: "/interior" },
+      { text: "Logout", icon: <LogoutIcon />, link: "/logout" },
+
       // plus other sign in stuff
       // for dev purposes
     ];
@@ -71,11 +77,11 @@ const Navbar = () => {
     // OPTION TO sign in or sign up
     drawerItems = [
       // { text: "Profile", icon: <PersonOutlineIcon />, link: "/" }, // Replace with your desired routes
-      { text: "Contact", icon: <MailIcon />, link: "/contact" },
-      { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
+      // { text: "Contact", icon: <MailIcon />, link: "/contact" },
+      // { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
       { text: "Interior", icon: <WeekendIcon />, link: "/interior" },
-      { text: "Sign in", icon: <WeekendIcon />, link: "/l2" },
-      { text: "Sign up", icon: <WeekendIcon />, link: "/c2" },
+      { text: "Sign in", icon: <LoginIcon />, link: "/l2" },
+      { text: "Sign up", icon: <AssignmentIndIcon />, link: "/c2" },
 
       // // plus other sign in stuff
       // for dev purposes
@@ -91,53 +97,10 @@ const Navbar = () => {
         </ListItem>
       ))}
     </List>
-    // <List>
-    //   {authTokenExists ? (
-    //     <ListItem>
-    //       <ListItemText primary="No items to display" />
-    //       {/* Will update with profile info... */}
-    //       {/* Dont include sign in and sign up info */}
-    //     </ListItem>
-    //   ) : (
-    //     drawerItems.map(({ text, icon, link }, index) => (
-    //       <ListItem key={index} component={Link} to={link}>
-    //         <ListItemIcon>{icon}</ListItemIcon>
-    //         <ListItemText primary={text} />
-    //       </ListItem>
-    //     ))
-    //     //Create a new listItem that is a sign in and sing up
-    //   )}
-    // </List>
   );
 
   const renderMenuItems = () => (
     <div style={{ display: "flex", alignItems: "center" }}>
-      {/* {authTokenExists ? (
-        <div>
-          {drawerItems.map(({ text, link }, index) => (
-            <Typography
-              key={index}
-              variant="h6"
-              component={Link}
-              to={link}
-              style={{
-                color: "black",
-                textDecoration: "none",
-                marginLeft: index > 0 ? "20px" : 0,
-              }}
-            >
-              {text}
-            </Typography>
-          ))}
-        </div>
-      ) : (
-        drawerItems.map(({ text, icon, link }, index) => (
-          <ListItem key={index} component={Link} to={link}>
-            <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        )) */}
-      {/* )} */}
       {drawerItems.map(({ text, link }, index) => (
         <Typography
           key={index}
@@ -171,7 +134,7 @@ const Navbar = () => {
           {isSmallScreen ? (
             <IconButton
               edge="start"
-              color="inherit"
+              color="black"
               aria-label="menu"
               onClick={toggleDrawer}
             >

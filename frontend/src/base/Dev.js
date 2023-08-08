@@ -18,8 +18,8 @@ const Dev = () => {
       {/* <LoginUser /> */}
       <HealthCheck />
       <CreateCustomerForm />
-      <LogoutUser />
       <JwtToken />
+      <LogoutUser />
     </div>
   );
 };
