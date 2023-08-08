@@ -26,7 +26,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { blueGrey } from "@mui/material/colors";
 import { Link, NavLink } from "react-router-dom"; // Will have to play around with this.
-import LogoutUser from "../user_form/LogoutUser";
+import LogoutUser from "../deprecated/LogoutUser";
 
 const Navbar = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);

@@ -1,7 +1,7 @@
 import HealthCheck from "../api/HealthCheck";
-import LogoutUser from "../user_form/LogoutUser";
 import JwtToken from "../auth/JwtToken";
 import CreateCustomerForm from "../user_form/CreateCustomerForm";
+// import LogoutUser from "../deprecated/LogoutUser";
 // import LoginUser from "../user_form/LoginUser";
 // import CreateUserForm from "../user_form/CreateUserForm";
 // import ClientImg from "../api/ClientImg";
@@ -16,10 +16,10 @@ const Dev = () => {
       {/* <ClientImg /> */}
       {/* <CreateUserForm /> */}
       {/* <LoginUser /> */}
+      {/* <LogoutUser /> */}
       <HealthCheck />
       <CreateCustomerForm />
       <JwtToken />
-      <LogoutUser />
     </div>
   );
 };
