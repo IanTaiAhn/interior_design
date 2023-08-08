@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import CreateUserForm2 from "./user_form/CreateUserForm2";
 import AppRoutes from "./nav/AppRoutes";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 // import { Switch } from "react-router"; // Import Switch from react-router
 import StickyFooter from "./base/Footer";
 
@@ -15,12 +16,12 @@ import Navbar from "./nav/Navbar";
 //bugs! todo FIX IT
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
+  <HashRouter>
     <Navbar />
     <AppRoutes />
     {/* My components when rendered are structured here. */}
     <StickyFooter />
-  </Router>
+  </HashRouter>
 );
 
 // turn off strictmode to make it so that things get processed only once and not twice.
