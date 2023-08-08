@@ -26,8 +26,8 @@ export default function SignUp() {
     try {
       const csrfToken = Cookies.get("csrftoken");
       const response = await axios.post(
-        "http://127.0.0.1:8000/login/",
-        // "https://web-production-a9bb.up.railway.app/login/",
+        // "http://127.0.0.1:8000/login/",
+        "https://web-production-a9bb.up.railway.app/login/",
         userData,
         {
           headers: {

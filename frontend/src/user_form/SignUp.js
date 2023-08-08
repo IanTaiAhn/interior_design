@@ -37,8 +37,8 @@ export default function SignUp() {
     try {
       const csrfToken = Cookies.get("csrftoken");
       const response = await axios.post(
-        // "https://web-production-a9bb.up.railway.app/create_user/",
-        "http://127.0.0.1:8000/create_user/",
+        "https://web-production-a9bb.up.railway.app/create_user/",
+        // "http://127.0.0.1:8000/create_user/",
         userData
       );
       console.log("User Data:", userData);

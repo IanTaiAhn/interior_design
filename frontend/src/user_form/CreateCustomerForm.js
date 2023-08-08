@@ -22,8 +22,8 @@ const CreateCustomerForm = () => {
       const token = localStorage.getItem("authToken");
 
       const response = await axios.post(
-        // "https://web-production-a9bb.up.railway.app/create_customer/",
-        "http://127.0.0.1:8000/create_customer/",
+        "https://web-production-a9bb.up.railway.app/create_customer/",
+        // "http://127.0.0.1:8000/create_customer/",
         // formData,
         {},
         {
