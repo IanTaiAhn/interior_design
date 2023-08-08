@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Dev from "../base/Dev";
 import HomePage from "../base/HomePage";
 import CreateUserForm2 from "../user_form/CreateUserForm2";
+import LoginUser2 from "../user_form/LoginUser2";
 // const About = () => <h2>This is the About page.</h2>;
 // const Home = () => <h2>This is the temp home page.</h2>;
 
@@ -28,6 +29,7 @@ const AppRoutes = () => {
       <Route path="/contact" element={<Contact />} />
       <Route path="/dev" element={<Dev />} />
       <Route path="/interior" element={<ClientImg />} />
+      <Route path="/l2" element={<LoginUser2 />} />
       <Route path="/c2" element={<CreateUserForm2 />} />
 
       {/* Using path="*"" means "match anything", so this route

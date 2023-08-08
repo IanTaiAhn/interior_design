@@ -7,8 +7,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-// import Link from "@mui/material/Link";
-import { Link } from "react-router-dom"; // Will have to play around with this.
+import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
@@ -27,17 +26,21 @@ export default function SignUp() {
     try {
       const csrfToken = Cookies.get("csrftoken");
       const response = await axios.post(
-        // "https://web-production-a9bb.up.railway.app/create_user/",
-        "http://127.0.0.1:8000/create_user/",
+        "http://127.0.0.1:8000/login/",
+        // "https://web-production-a9bb.up.railway.app/login/",
         userData,
         {
           headers: {
             "Content-Type": "application/json", // Set the content type for FormData
+            "X-CSRFToken": csrfToken, // Include the CSRF token as a custom header
           },
         }
       );
-      // console.log("Username:", userData.username);
-      // console.log("Password:", userData.password);
+      console.log("Username:", userData.username);
+      console.log("Password:", userData.password);
+      localStorage.setItem("authToken", response.data.token);
+      window.location.reload();
+
       console.log(response.data); // User created successfully
     } catch (error) {
       console.error(error);
@@ -65,7 +68,7 @@ export default function SignUp() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign up
+            Sign In
           </Typography>
           <Box
             component="form"
@@ -74,27 +77,6 @@ export default function SignUp() {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-              {/* <Grid item xs={12} sm={6}>
-                <TextField
-                  autoComplete="given-name"
-                  name="firstName"
-                  required
-                  fullWidth
-                  id="firstName"
-                  label="First Name"
-                  autoFocus
-                />
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <TextField
-                  required
-                  fullWidth
-                  id="lastName"
-                  label="Last Name"
-                  name="lastName"
-                  autoComplete="family-name"
-                />
-              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   autoComplete="given-name"
@@ -106,16 +88,7 @@ export default function SignUp() {
                   autoFocus
                 />
               </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid>
+
               <Grid item xs={12}>
                 <TextField
                   required
@@ -127,9 +100,14 @@ export default function SignUp() {
                   autoComplete="new-password"
                 />
               </Grid>
-              <Grid item xs={12}>
-                <p>We only send one verification email, nothing else.</p>
-              </Grid>
+              {/* <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid> */}
             </Grid>
             <Button
               type="submit"
@@ -137,14 +115,14 @@ export default function SignUp() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              Sign In
             </Button>
             <Grid container justifyContent="flex-end">
-              <Grid item>
-                <Link className="hover:text-gray-500" to="/l2">
+              {/* <Grid item>
+                <Link href="#" variant="body2">
                   Already have an account? Sign in
                 </Link>
-              </Grid>
+              </Grid> */}
             </Grid>
           </Box>
         </Box>
