@@ -80,8 +80,8 @@ const Navbar = () => {
       // { text: "Contact", icon: <MailIcon />, link: "/contact" },
       // { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
       { text: "Interior", icon: <WeekendIcon />, link: "/interior" },
-      { text: "Sign in", icon: <LoginIcon />, link: "/l2" },
-      { text: "Sign up", icon: <AssignmentIndIcon />, link: "/c2" },
+      { text: "Sign in", icon: <LoginIcon />, link: "/login" },
+      { text: "Sign up", icon: <AssignmentIndIcon />, link: "/signup" },
 
       // // plus other sign in stuff
       // for dev purposes
@@ -124,7 +124,7 @@ const Navbar = () => {
       <AppBar position="static" sx={{ backgroundColor: blueGrey[50] }}>
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            <NavLink to="/home" style={styles.link}>
+            <NavLink to="/" style={styles.link}>
               <div className="flex">
                 <DiamondIcon fontSize="large" />
                 <h1 className="font-mono pl-2">AI</h1>
