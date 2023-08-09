@@ -39,6 +39,7 @@ export default function SignUp() {
       // console.log("Username:", userData.username);
       // console.log("Password:", userData.password);
       console.log(response.data); // User created successfully
+      window.location.reload();
     } catch (error) {
       console.error(error);
     }

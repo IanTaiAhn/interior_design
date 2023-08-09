@@ -3,8 +3,14 @@ import React, { useEffect } from "react";
 const Logout = () => {
   useEffect(() => {
     try {
-      localStorage.clear();
       console.log("User Logged Out");
+      if (localStorage.length === 0) {
+        console.log("localStorage is empty");
+      } else {
+        localStorage.clear();
+        window.location.reload(); // Perform a hard refresh
+        console.log("localStorage is not empty");
+      }
     } catch (error) {
       console.error("Error clearing LocalStorage:", error);
     }
