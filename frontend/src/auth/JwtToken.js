@@ -17,7 +17,7 @@ const JwtToken = () => {
   useEffect(() => {
     const jwtToken = localStorage.getItem("authToken"); // Replace this with the actual JWT token received from your server
     // console.log("JwtToken: " + jwtToken);
-    console.log("csrft token: " + csrfToken);
+    // console.log("csrft token: " + csrfToken);
     axios
       .post(
         BackendEndpoint,
@@ -32,24 +32,25 @@ const JwtToken = () => {
       )
       .then((response) => {
         setIsTokenExpired(response.data.expired);
-        // console.log(response);
+        console.log(response);
       })
       .catch((error) => {
         console.error("Error checking token expiration:", error);
       });
   }, []);
 
-  return (
-    <div>
-      {isTokenExpired === null ? (
-        <p>User has logged out</p>
-      ) : isTokenExpired ? (
-        <p>Token has expired.</p>
-      ) : (
-        <p>Token is still valid.</p>
-      )}
-    </div>
-  );
+  return null;
+  // return (
+  //   <div>
+  //     {isTokenExpired === null ? (
+  //       <p>User has logged out</p>
+  //     ) : isTokenExpired ? (
+  //       <p>Token has expired.</p>
+  //     ) : (
+  //       <p>Token is still valid.</p>
+  //     )}
+  //   </div>
+  // );
 };
 
 export default JwtToken;

@@ -39,7 +39,7 @@ const Navbar = () => {
       color: "black", // Set the default text color
     },
   };
-  console.log(localStorage.getItem("authToken"));
+  // console.log(localStorage.getItem("authToken"));
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken");
@@ -52,13 +52,13 @@ const Navbar = () => {
     setIsDrawerOpen(!isDrawerOpen);
   };
 
+  // Prolly can reassign this to be empty.
   let drawerItems = [
     // { text: "Profile", icon: <PersonOutlineIcon />, link: "/" }, // Replace with your desired routes
-    { text: "Contact", icon: <MailIcon />, link: "/contact" },
+    // { text: "Contact", icon: <MailIcon />, link: "/contact" },
     { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
     { text: "Interior", icon: <WeekendIcon />, link: "/interior" },
-    // plus other sign in stuff
-    // for dev purposes
+    { text: "CreateCustomer", icon: <LogoDevIcon />, link: "/stripe" },
   ];
 
   if (authTokenExists) {
@@ -69,6 +69,7 @@ const Navbar = () => {
       // { text: "Dev", icon: <LogoDevIcon />, link: "/dev" },
       { text: "Interior", icon: <WeekendIcon />, link: "/interior" },
       { text: "Logout", icon: <LogoutIcon />, link: "/logout" },
+      { text: "CreateCustomer", icon: <LogoDevIcon />, link: "/stripe" },
 
       // plus other sign in stuff
       // for dev purposes

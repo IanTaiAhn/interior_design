@@ -5,6 +5,7 @@ import "./index.css";
 import Home from "./base/Dev";
 import reportWebVitals from "./reportWebVitals";
 import CreateUserForm2 from "./user_form/CreateUserForm2";
+import JwtToken from "./auth/JwtToken";
 import AppRoutes from "./nav/AppRoutes";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { HashRouter } from "react-router-dom";
@@ -20,6 +21,8 @@ root.render(
     <Navbar />
     <AppRoutes />
     {/* My components when rendered are structured here. */}
+    <JwtToken />
+
     <StickyFooter />
   </HashRouter>
 );

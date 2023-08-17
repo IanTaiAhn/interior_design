@@ -8,6 +8,8 @@ import HomePage from "../base/HomePage";
 import CreateUserForm2 from "../user_form/CreateUserForm2";
 import LoginUser2 from "../user_form/LoginUser2";
 import Logout from "../user_form/LogoutUser2";
+import CreateCustomerForm from "../user_form/CreateCustomerForm";
+// import JwtToken from "../auth/JwtToken";
 // const About = () => <h2>This is the About page.</h2>;
 // const Home = () => <h2>This is the temp home page.</h2>;
 
@@ -33,6 +35,8 @@ const AppRoutes = () => {
       <Route path="/login" element={<LoginUser2 />} />
       <Route path="/signup" element={<CreateUserForm2 />} />
       <Route path="/logout" element={<Logout />} />
+      <Route path="/stripe" element={<CreateCustomerForm />} />
+      {/* <Route path="/jwt_check" element={<JwtToken />} /> */}
 
       {/* Using path="*"" means "match anything", so this route
                 acts like a catch-all for URLs that we don't have explicit

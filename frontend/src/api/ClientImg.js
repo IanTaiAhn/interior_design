@@ -123,15 +123,15 @@ function ClientImg() {
                   onChange={handleImageUpload}
                 />
               </div> */}
-              <div class="relative">
+              <div className="relative">
                 <input
                   className="absolute opacity-0 w-full h-full"
                   type="file"
                   accept="image/*"
                   onChange={handleImageUpload}
                 />
-                <div class="bg-gray-100 p-4 rounded-md">
-                  <span class="block text-gray-500">
+                <div className="bg-gray-100 p-4 rounded-md">
+                  <span className="block text-gray-500">
                     Click to upload an image
                   </span>
                 </div>
@@ -185,15 +185,15 @@ function ClientImg() {
       </div>
       {processedImage ? (
         <div className="p-2 mt-4 sm:mt-8 flex items-center justify-center">
-          <div class="relative">
+          <div className="relative">
             <input
               className="absolute opacity-0 w-full h-full"
               type="file"
               accept="image/*"
               onChange={handleImageUpload}
             />
-            <div class="bg-gray-100 p-4 rounded-md">
-              <span class="block text-gray-600 hover:text-green-100">
+            <div className="bg-gray-100 p-4 rounded-md">
+              <span className="block text-gray-600 hover:text-green-100">
                 <p className="hover:text-green-400">Generate Again?</p>
               </span>
             </div>

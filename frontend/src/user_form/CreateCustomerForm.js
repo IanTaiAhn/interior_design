@@ -30,6 +30,7 @@ const CreateCustomerForm = () => {
         {},
         {
           headers: {
+            // "Content-Type": "multipart/form-data", // Set the content type for FormData
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json", // Make sure to specify the content type
           },
