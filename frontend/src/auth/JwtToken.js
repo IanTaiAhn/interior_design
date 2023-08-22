@@ -33,7 +33,7 @@ const JwtToken = () => {
       .then((response) => {
         setIsTokenExpired(response.data.expired);
         console.log(response.data.expired);
-        if (isTokenExpired) {
+        if (!isTokenExpired) {
           localStorage.clear();
         }
         console.log(response);
